@@ -1,0 +1,9 @@
+﻿<Application x:Class="Dynamic_Paint.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Dynamic_Paint"
+             >
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
