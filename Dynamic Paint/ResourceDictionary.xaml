@@ -1,0 +1,6 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Dynamic_Paint"
+                    xmlns:res="clr-namespace:Dynamic_Paint.Language">
+    <ObjectDataProvider x:Key="Resources" ObjectType="{x:Type res:CultureResources}" MethodName="GetResourceInstance" />
+</ResourceDictionary>

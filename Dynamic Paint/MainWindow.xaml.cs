@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dynamic_Paint.Language;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,8 @@ namespace Dynamic_Paint
     {
         public MainWindow()
         {
+            CultureResources.ChangeCulture(Properties.Settings.Default.DefaultCulture);
+
             InitializeComponent();
         }
     }

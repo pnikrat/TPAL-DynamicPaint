@@ -118,36 +118,36 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FileMenuExitText" xml:space="preserve">
-    <value>Exit</value>
+    <value>Wyjdź</value>
   </data>
   <data name="FileMenuNewText" xml:space="preserve">
-    <value>New</value>
+    <value>Nowy</value>
   </data>
   <data name="FileMenuOpenText" xml:space="preserve">
-    <value>Open</value>
+    <value>Otwórz</value>
   </data>
   <data name="FileMenuSaveText" xml:space="preserve">
-    <value>Save</value>
+    <value>Zapisz</value>
   </data>
   <data name="FileMenuText" xml:space="preserve">
-    <value>File</value>
+    <value>Plik</value>
   </data>
   <data name="LanguageMenuEnglishText" xml:space="preserve">
-    <value>English</value>
+    <value>Angielski</value>
   </data>
   <data name="LanguageMenuPolishText" xml:space="preserve">
-    <value>Polish</value>
+    <value>Polski</value>
   </data>
   <data name="LanguageMenuText" xml:space="preserve">
-    <value>Language</value>
+    <value>Język</value>
   </data>
   <data name="MainWindowTitle" xml:space="preserve">
     <value>Dynamic Paint</value>
   </data>
   <data name="StatusDrawingLine" xml:space="preserve">
-    <value>Drawing a line</value>
+    <value>Rysowanie linii</value>
   </data>
   <data name="TestText" xml:space="preserve">
-    <value>Test text!</value>
+    <value>Testowy tekst!</value>
   </data>
 </root>

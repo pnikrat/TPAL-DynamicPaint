@@ -20,7 +20,14 @@ namespace Dynamic_Paint
             _execute = execute;
             _canExecute = canExecute;
         }
+        
+        public RelayCommand(Action<object> execute)
+        {
+            if (execute == null)
+                throw new ArgumentNullException("execute");
 
+            _execute = execute;
+        }
 
         public event EventHandler CanExecuteChanged
         {
