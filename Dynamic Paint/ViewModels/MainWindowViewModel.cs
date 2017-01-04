@@ -1,10 +1,13 @@
 ﻿using Dynamic_Paint.Language;
+using Dynamic_Paint.Properties;
+using Dynamic_Paint.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
@@ -18,10 +21,12 @@ namespace Dynamic_Paint.ViewModels
         {
             _english = true;
             _polish = false;
+            _currentCulture = "en";
         }
 
         private bool _english;
         private bool _polish;
+        private string _currentCulture;
         private string _statusBarText;
         private RelayCommand _drawLineCommand;
         private RelayCommand _changeLanguageCommand;
@@ -86,22 +91,30 @@ namespace Dynamic_Paint.ViewModels
 
         public void ChangeLanguage(object chosenCulture)
         {
+            ResourceHelper helper = new ResourceHelper("Dynamic_Paint.Properties.Resources", GetType().Assembly);
+            string updatedStatusBarTextKey = helper.GetResourceName(StatusBarText, CultureInfo.CreateSpecificCulture(_currentCulture));
+
             string ChosenCultureString = (string)chosenCulture;
+            CultureInfo ChosenCultureInfo = CultureInfo.CreateSpecificCulture(ChosenCultureString);
+
             if (ChosenCultureString == "pl")
             {
                 Polish = true;
                 English = false;
+                _currentCulture = "pl";
             }
             else
             {
                 English = true;
                 Polish = false;
+                _currentCulture = "en";
             }
-            CultureInfo ChosenCultureInfo = CultureInfo.CreateSpecificCulture(ChosenCultureString);
+
             CultureResources.ChangeCulture(ChosenCultureInfo);
             CultureInfo.DefaultThreadCurrentCulture = ChosenCultureInfo;
             CultureInfo.DefaultThreadCurrentUICulture = ChosenCultureInfo;
-
+        
+            StatusBarText = helper.GetResourceValue(updatedStatusBarTextKey, CultureInfo.CreateSpecificCulture(_currentCulture));
             base.OnPropertyChanged("StatusBarText");
         }
     }

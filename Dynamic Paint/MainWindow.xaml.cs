@@ -1,6 +1,7 @@
 ﻿using Dynamic_Paint.Language;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,7 @@ namespace Dynamic_Paint
         public MainWindow()
         {
             CultureResources.ChangeCulture(Properties.Settings.Default.DefaultCulture);
+            CultureInfo.DefaultThreadCurrentCulture = Properties.Settings.Default.DefaultCulture;
 
             InitializeComponent();
         }
