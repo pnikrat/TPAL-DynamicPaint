@@ -15,12 +15,15 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="0.6*"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="9*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Background="Aqua">
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+            <StackPanel.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+            </StackPanel.Background>
             <Menu>
                 <MenuItem Header="{Binding Path=FileMenuText, Source={StaticResource Resources}}">
                     <MenuItem Header="{Binding Path=FileMenuNewText, Source={StaticResource Resources}}" />
@@ -38,9 +41,39 @@
             </Menu>
         </StackPanel>
 
-        <WrapPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Background="Azure">
-            <xctk:ColorPicker AvailableColorsSortingMode="HueSaturationBrightness" ShowAdvancedButton="False" ShowStandardColors="False" 
-                              SelectedColor="Black" Width="60" AvailableColorsHeader="{Binding Path=ColorsHeader, Source={StaticResource Resources}}"/>
+        <WrapPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+            <WrapPanel.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+            </WrapPanel.Background>
+            <xctk:ColorPicker AvailableColorsSortingMode="HueSaturationBrightness" ShowAdvancedButton="False" 
+                              ShowStandardColors="False" DisplayColorAndName="True"
+                              SelectedColor="Black" Width="Auto" AvailableColorsHeader="{Binding Path=ColorsHeader, Source={StaticResource Resources}}"/>
+            <ComboBox Width="60" SelectedIndex="1">
+                <ComboBoxItem>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="0 2 6 0">3</TextBlock>
+                        <Line X1="0" X2="30" Width="29" StrokeThickness="3" Stroke="Black" Margin="0 10 0 10"/>
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="0 2 6 0">5</TextBlock>
+                        <Line X1="0" X2="30" Width="29" StrokeThickness="5" Stroke="Black" Margin="0 10 0 10"/>
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="0 2 6 0">7</TextBlock>
+                        <Line X1="0" X2="30" Width="28" StrokeThickness="7" Stroke="Black" Margin="0 10 0 10"/>
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="0 2 6 0">9</TextBlock>
+                        <Line X1="0" X2="30" Width="28" StrokeThickness="9" Stroke="Black" Margin="0 10 0 10"/>
+                    </StackPanel>
+                </ComboBoxItem>
+            </ComboBox>
             <ToolBar>
                 <Button MaxHeight="25" MaxWidth="25" Command="{Binding DrawLineCommand}">
                     <Image Source="Icons/line.ico" />
@@ -58,7 +91,10 @@
             <Canvas Background="White" />
         </DockPanel>
 
-        <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal" Background="BurlyWood">
+        <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
+            <StackPanel.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+            </StackPanel.Background>
             <StatusBar>
                 <Label Content="{Binding Path=StatusBarText}" />
             </StatusBar>
