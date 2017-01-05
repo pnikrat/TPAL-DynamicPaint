@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dynamic_Paint.ViewModels"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         WindowState="Maximized"
         MinWidth="640" MinHeight="480"
@@ -38,6 +39,8 @@
         </StackPanel>
 
         <WrapPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Background="Azure">
+            <xctk:ColorPicker AvailableColorsSortingMode="HueSaturationBrightness" ShowAdvancedButton="False" ShowStandardColors="False" 
+                              SelectedColor="Black" Width="60" AvailableColorsHeader="{Binding Path=ColorsHeader, Source={StaticResource Resources}}"/>
             <ToolBar>
                 <Button MaxHeight="25" MaxWidth="25" Command="{Binding DrawLineCommand}">
                     <Image Source="Icons/line.ico" />

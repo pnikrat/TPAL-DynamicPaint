@@ -61,6 +61,15 @@ namespace Dynamic_Paint.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Available colors.
+        /// </summary>
+        public static string ColorsHeader {
+            get {
+                return ResourceManager.GetString("ColorsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         public static string FileMenuExitText {
@@ -138,6 +147,15 @@ namespace Dynamic_Paint.Properties {
         public static string MainWindowTitle {
             get {
                 return ResourceManager.GetString("MainWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose a tool to draw.
+        /// </summary>
+        public static string StatusDefaultText {
+            get {
+                return ResourceManager.GetString("StatusDefaultText", resourceCulture);
             }
         }
         

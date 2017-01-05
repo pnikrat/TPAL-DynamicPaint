@@ -22,6 +22,7 @@ namespace Dynamic_Paint.ViewModels
             _english = true;
             _polish = false;
             _currentCulture = "en";
+            StatusBarText = Properties.Resources.StatusDefaultText;
         }
 
         private bool _english;
