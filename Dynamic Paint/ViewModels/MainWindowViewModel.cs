@@ -28,8 +28,16 @@ namespace Dynamic_Paint.ViewModels
         private bool _english;
         private bool _polish;
         private string _currentCulture;
+
         private string _statusBarText;
+
+        private bool _drawingLine;
+        private bool _drawingRectangle;
+        private bool _drawingEllipse;
         private RelayCommand _drawLineCommand;
+        private RelayCommand _drawRectangleCommand;
+        private RelayCommand _drawEllipseCommand;
+
         private RelayCommand _changeLanguageCommand;
        
 
@@ -63,6 +71,36 @@ namespace Dynamic_Paint.ViewModels
             }
         }
 
+        public bool DrawingLine
+        {
+            get { return _drawingLine; }
+            set
+            {
+                _drawingLine = value;
+                base.OnPropertyChanged("DrawingLine");
+            }
+        }
+
+        public bool DrawingRectangle
+        {
+            get { return _drawingRectangle; }
+            set
+            {
+                _drawingRectangle = value;
+                base.OnPropertyChanged("DrawingRectangle");
+            }
+        }
+
+        public bool DrawingEllipse
+        {
+            get { return _drawingEllipse; }
+            set
+            {
+                _drawingEllipse = value;
+                base.OnPropertyChanged("DrawingEllipse");
+            }
+        }
+
         public ICommand DrawLineCommand
         {
             get
@@ -78,6 +116,49 @@ namespace Dynamic_Paint.ViewModels
         public void DrawLine()
         {
             StatusBarText = Properties.Resources.StatusDrawingLine;
+            DrawingLine = true;
+            DrawingRectangle = false;
+            DrawingEllipse = false;
+        }
+
+        public ICommand DrawRectangleCommand
+        {
+            get
+            {
+                if (_drawRectangleCommand == null)
+                {
+                    _drawRectangleCommand = new RelayCommand(param => this.DrawRectangle());
+                }
+                return _drawRectangleCommand;
+            }
+        }
+
+        public void DrawRectangle()
+        {
+            StatusBarText = Properties.Resources.StatusDrawingRectangle;
+            DrawingLine = false;
+            DrawingRectangle = true;
+            DrawingEllipse = false;
+        }
+
+        public ICommand DrawEllipseCommand
+        {
+            get
+            {
+                if (_drawEllipseCommand == null)
+                {
+                    _drawEllipseCommand = new RelayCommand(param => this.DrawEllipse());
+                }
+                return _drawEllipseCommand;
+            }
+        }
+
+        public void DrawEllipse()
+        {
+            StatusBarText = Properties.Resources.StatusDrawingEllipse;
+            DrawingLine = false;
+            DrawingRectangle = false;
+            DrawingEllipse = true;
         }
 
         public ICommand ChangeLanguageCommand

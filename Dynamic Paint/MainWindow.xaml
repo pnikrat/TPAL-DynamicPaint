@@ -75,15 +75,15 @@
                 </ComboBoxItem>
             </ComboBox>
             <ToolBar>
-                <Button MaxHeight="25" MaxWidth="25" Command="{Binding DrawLineCommand}">
+                <ToggleButton MaxHeight="25" MaxWidth="25" Command="{Binding DrawLineCommand}" IsChecked="{Binding Path=DrawingLine}">
                     <Image Source="Icons/line.ico" />
-                </Button>
-                <Button MaxHeight="25" MaxWidth="25">
+                </ToggleButton>
+                <ToggleButton MaxHeight="25" MaxWidth="25" Command="{Binding DrawRectangleCommand}" IsChecked="{Binding Path=DrawingRectangle}">
                     <Image Source="Icons/rectangle.png" />
-                </Button>
-                <Button MaxHeight="25" MaxWidth="25">
+                </ToggleButton>
+                <ToggleButton MaxHeight="25" MaxWidth="25" Command="{Binding DrawEllipseCommand}" IsChecked="{Binding Path=DrawingEllipse}">
                     <Image Source="Icons/ellipse.png" />
-                </Button>
+                </ToggleButton>
             </ToolBar>
         </WrapPanel>
 

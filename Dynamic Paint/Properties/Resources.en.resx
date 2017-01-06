@@ -150,8 +150,14 @@
   <data name="StatusDefaultText" xml:space="preserve">
     <value>Choose a tool to draw</value>
   </data>
+  <data name="StatusDrawingEllipse" xml:space="preserve">
+    <value>Drawing an ellipse</value>
+  </data>
   <data name="StatusDrawingLine" xml:space="preserve">
     <value>Drawing a line</value>
+  </data>
+  <data name="StatusDrawingRectangle" xml:space="preserve">
+    <value>Drawing a rectangle</value>
   </data>
   <data name="TestText" xml:space="preserve">
     <value>Test text!</value>

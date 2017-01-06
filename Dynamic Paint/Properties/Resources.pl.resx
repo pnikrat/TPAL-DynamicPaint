@@ -150,8 +150,14 @@
   <data name="StatusDefaultText" xml:space="preserve">
     <value>Wybierz narzędzie aby zacząć rysować</value>
   </data>
+  <data name="StatusDrawingEllipse" xml:space="preserve">
+    <value>Rysowanie elipsy</value>
+  </data>
   <data name="StatusDrawingLine" xml:space="preserve">
     <value>Rysowanie linii</value>
+  </data>
+  <data name="StatusDrawingRectangle" xml:space="preserve">
+    <value>Rysowanie prostokąta</value>
   </data>
   <data name="TestText" xml:space="preserve">
     <value>Testowy tekst!</value>

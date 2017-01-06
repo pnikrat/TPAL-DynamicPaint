@@ -160,11 +160,29 @@ namespace Dynamic_Paint.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Drawing an ellipse.
+        /// </summary>
+        public static string StatusDrawingEllipse {
+            get {
+                return ResourceManager.GetString("StatusDrawingEllipse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Drawing a line.
         /// </summary>
         public static string StatusDrawingLine {
             get {
                 return ResourceManager.GetString("StatusDrawingLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drawing a rectangle.
+        /// </summary>
+        public static string StatusDrawingRectangle {
+            get {
+                return ResourceManager.GetString("StatusDrawingRectangle", resourceCulture);
             }
         }
         
