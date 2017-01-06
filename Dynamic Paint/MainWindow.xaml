@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dynamic_Paint.ViewModels"
+        xmlns:models="clr-namespace:Dynamic_Paint.Models"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:light="http://www.galasoft.ch/mvvmlight"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
@@ -102,21 +103,39 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <Canvas Grid.Column="0" Grid.Row="0" Background="White" Name="Scene" Width="1024" Height="768">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseLeftButtonDown">
-                            <i:InvokeCommandAction Command="{Binding MouseDownCommand}" CommandParameter="{Binding ElementName=Scene}" />
-                            <!-- <light:EventToCommand Command="{Binding MouseDownCommand}" CommandParameter="{Binding ElementName=Scene}" />-->
-                        </i:EventTrigger>
-                        <i:EventTrigger EventName="MouseLeftButtonUp">
-                            <i:InvokeCommandAction Command="{Binding MouseUpCommand}" CommandParameter="{Binding ElementName=Scene}" />
-                            <!--<light:EventToCommand Command="{Binding MouseUpCommand}" PassEventArgsToCommand="True" />-->
-                        </i:EventTrigger>
-                        <i:EventTrigger EventName="MouseMove">
-                            <i:InvokeCommandAction Command="{Binding MouseMoveCommand}" CommandParameter="{Binding ElementName=Scene}" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </Canvas>
+                <ItemsControl ItemsSource="{Binding Path=SceneObjects}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Canvas Grid.Column="0" Grid.Row="0" Background="White" Name="Scene" Width="1024" Height="768" IsItemsHost="True">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                        <i:InvokeCommandAction Command="{Binding MouseDownCommand}" CommandParameter="{Binding ElementName=Scene}" />
+                                        <!-- <light:EventToCommand Command="{Binding MouseDownCommand}" CommandParameter="{Binding ElementName=Scene}" />-->
+                                    </i:EventTrigger>
+                                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                                        <i:InvokeCommandAction Command="{Binding MouseUpCommand}" CommandParameter="{Binding ElementName=Scene}" />
+                                        <!--<light:EventToCommand Command="{Binding MouseUpCommand}" PassEventArgsToCommand="True" />-->
+                                    </i:EventTrigger>
+                                    <i:EventTrigger EventName="MouseMove">
+                                        <i:InvokeCommandAction Command="{Binding MouseMoveCommand}" CommandParameter="{Binding ElementName=Scene}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Canvas>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Path Data="{Binding ShapeData}" Stroke="Black" StrokeThickness="5"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                   <!-- <ItemsControl.ItemContainerStyle>
+                        <Style TargetType="ContentPresenter">
+                            <Setter Property="Canvas.Left" Value="{Binding Path=Left}" />
+                            <Setter Property="Canvas.Top" Value="{Binding Path=Top}" />
+                        </Style>
+                    </ItemsControl.ItemContainerStyle> -->
+                </ItemsControl>
             </Grid>
         </ScrollViewer>
         

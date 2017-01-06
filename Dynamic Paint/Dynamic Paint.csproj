@@ -108,6 +108,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Language\CultureResources.cs" />
+    <Compile Include="ViewModels\CanvasShapeViewModel.cs" />
+    <Compile Include="Models\MyLine.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Properties\Resources.pl.Designer.cs">
       <DependentUpon>Resources.pl.resx</DependentUpon>
@@ -168,7 +170,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>

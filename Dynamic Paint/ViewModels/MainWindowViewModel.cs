@@ -1,8 +1,10 @@
 ﻿using Dynamic_Paint.Language;
+using Dynamic_Paint.Models;
 using Dynamic_Paint.Properties;
 using Dynamic_Paint.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -12,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Shapes;
 
 namespace Dynamic_Paint.ViewModels
 {
@@ -24,6 +27,7 @@ namespace Dynamic_Paint.ViewModels
             _currentCulture = "en";
             StatusBarText = Properties.Resources.StatusDefaultText;
             Coordinates = "X: 0, Y: 0";
+          //  SceneObjects = new ObservableCollection<CanvasShape>();
         }
 
         private bool _english;
@@ -36,6 +40,11 @@ namespace Dynamic_Paint.ViewModels
         private bool _drawingLine;
         private bool _drawingRectangle;
         private bool _drawingEllipse;
+
+        private ObservableCollection<CanvasShapeViewModel> _sceneObjects = new ObservableCollection<CanvasShapeViewModel>();
+        public CanvasShapeViewModel _currentlyDrawnShapeRef;
+        private bool _isDrawing;
+
         private RelayCommand _drawLineCommand;
         private RelayCommand _drawRectangleCommand;
         private RelayCommand _drawEllipseCommand;
@@ -117,6 +126,16 @@ namespace Dynamic_Paint.ViewModels
             }
         }
 
+        public ObservableCollection<CanvasShapeViewModel> SceneObjects
+        {
+            get { return _sceneObjects; }
+            set
+            {
+                _sceneObjects = value;
+                base.OnPropertyChanged("SceneObjects");
+            } 
+        }
+
         public ICommand DrawLineCommand
         {
             get
@@ -191,7 +210,15 @@ namespace Dynamic_Paint.ViewModels
 
         public void MouseDown(object parent)
         {
-            Point mousePos = Mouse.GetPosition((IInputElement)parent);
+            IInputElement canvas = (IInputElement)parent;
+            if (canvas.IsMouseOver && _drawingLine)
+            {
+                _isDrawing = true;
+                Point mousePos = Mouse.GetPosition(canvas);
+                MyLine shape = new MyLine(mousePos.X, mousePos.Y, mousePos.X, mousePos.Y);
+                _currentlyDrawnShapeRef = shape;
+                SceneObjects.Add(shape);
+            }
         }
 
         public ICommand MouseUpCommand
@@ -208,7 +235,13 @@ namespace Dynamic_Paint.ViewModels
 
         public void MouseUp(object parent)
         {
-            Point mousePos = Mouse.GetPosition((IInputElement)parent);
+            IInputElement canvas = (IInputElement)parent;
+            if (canvas.IsMouseOver && _isDrawing)
+            {
+                _isDrawing = false;
+                Point mousePos = Mouse.GetPosition(canvas);
+                _currentlyDrawnShapeRef.UpdatePosition(mousePos.X, mousePos.Y);
+            }
         }
 
         public ICommand MouseMoveCommand
@@ -226,6 +259,10 @@ namespace Dynamic_Paint.ViewModels
         public void MouseMove(object parent)
         {
             Point mousePos = Mouse.GetPosition((IInputElement)parent);
+            if (_currentlyDrawnShapeRef != null && _isDrawing)
+            {
+                _currentlyDrawnShapeRef.UpdatePosition(mousePos.X, mousePos.Y);
+            }
 
             Coordinates = "X: " + ((int)mousePos.X).ToString() + ", Y: " + ((int)mousePos.Y).ToString();
         }
