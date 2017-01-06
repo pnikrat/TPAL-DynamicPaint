@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dynamic_Paint.ViewModels"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:light="http://www.galasoft.ch/mvvmlight"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         WindowState="Maximized"
@@ -74,30 +76,51 @@
                     </StackPanel>
                 </ComboBoxItem>
             </ComboBox>
-            <ToolBar>
-                <ToggleButton MaxHeight="25" MaxWidth="25" Command="{Binding DrawLineCommand}" IsChecked="{Binding Path=DrawingLine}">
+
+            <StackPanel Orientation="Horizontal">
+                <ToggleButton Style="{StaticResource {x:Static ToolBar.ToggleButtonStyleKey}}" 
+                              MaxHeight="25" MaxWidth="25" Command="{Binding DrawLineCommand}" IsChecked="{Binding Path=DrawingLine}">
                     <Image Source="Icons/line.ico" />
                 </ToggleButton>
-                <ToggleButton MaxHeight="25" MaxWidth="25" Command="{Binding DrawRectangleCommand}" IsChecked="{Binding Path=DrawingRectangle}">
+                <ToggleButton Style="{StaticResource {x:Static ToolBar.ToggleButtonStyleKey}}"
+                              MaxHeight="25" MaxWidth="25" Command="{Binding DrawRectangleCommand}" IsChecked="{Binding Path=DrawingRectangle}">
                     <Image Source="Icons/rectangle.png" />
                 </ToggleButton>
-                <ToggleButton MaxHeight="25" MaxWidth="25" Command="{Binding DrawEllipseCommand}" IsChecked="{Binding Path=DrawingEllipse}">
+                <ToggleButton Style="{StaticResource {x:Static ToolBar.ToggleButtonStyleKey}}"
+                              MaxHeight="25" MaxWidth="25" Command="{Binding DrawEllipseCommand}" IsChecked="{Binding Path=DrawingEllipse}">
                     <Image Source="Icons/ellipse.png" />
                 </ToggleButton>
-            </ToolBar>
+            </StackPanel>
         </WrapPanel>
 
         <DockPanel Grid.Row="2" Grid.Column="0" Background="Beige">
-            <Canvas Background="White" />
+            <Canvas Background="White" Name="Scene">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                        <i:InvokeCommandAction Command="{Binding MouseDownCommand}" CommandParameter="{Binding ElementName=Scene}" />
+                        <!-- <light:EventToCommand Command="{Binding MouseDownCommand}" CommandParameter="{Binding ElementName=Scene}" />-->
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <i:InvokeCommandAction Command="{Binding MouseUpCommand}" CommandParameter="{Binding ElementName=Scene}" />
+                        <!--<light:EventToCommand Command="{Binding MouseUpCommand}" PassEventArgsToCommand="True" />-->
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="MouseMove">
+                        <i:InvokeCommandAction Command="{Binding MouseMoveCommand}" CommandParameter="{Binding ElementName=Scene}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Canvas>
         </DockPanel>
 
-        <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
-            <StackPanel.Background>
-                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
-            </StackPanel.Background>
-            <StatusBar>
+        <StatusBar Grid.Row="3" Grid.Column="0">
+            <StatusBarItem DockPanel.Dock="Left">
                 <Label Content="{Binding Path=StatusBarText}" />
-            </StatusBar>
-        </StackPanel>
+            </StatusBarItem>
+            <StatusBarItem DockPanel.Dock="Right">
+                <Label Content="{Binding Path=Coordinates}" />
+            </StatusBarItem>
+            <StatusBarItem>
+                <!-- Fill with nothing -->
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Window>

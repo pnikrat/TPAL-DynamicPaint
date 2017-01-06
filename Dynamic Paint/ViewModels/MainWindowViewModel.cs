@@ -23,6 +23,7 @@ namespace Dynamic_Paint.ViewModels
             _polish = false;
             _currentCulture = "en";
             StatusBarText = Properties.Resources.StatusDefaultText;
+            Coordinates = "X: 0, Y: 0";
         }
 
         private bool _english;
@@ -30,6 +31,7 @@ namespace Dynamic_Paint.ViewModels
         private string _currentCulture;
 
         private string _statusBarText;
+        private string _coordinates;
 
         private bool _drawingLine;
         private bool _drawingRectangle;
@@ -37,6 +39,10 @@ namespace Dynamic_Paint.ViewModels
         private RelayCommand _drawLineCommand;
         private RelayCommand _drawRectangleCommand;
         private RelayCommand _drawEllipseCommand;
+
+        private RelayCommand _mouseDownCommand;
+        private RelayCommand _mouseUpCommand;
+        private RelayCommand _mouseMoveCommand;
 
         private RelayCommand _changeLanguageCommand;
        
@@ -68,6 +74,16 @@ namespace Dynamic_Paint.ViewModels
             {
                 _statusBarText = value;
                 base.OnPropertyChanged("StatusBarText");
+            }
+        }
+
+        public string Coordinates
+        {
+            get { return _coordinates; }
+            set
+            {
+                _coordinates = value;
+                base.OnPropertyChanged("Coordinates");
             }
         }
 
@@ -161,12 +177,65 @@ namespace Dynamic_Paint.ViewModels
             DrawingEllipse = true;
         }
 
+        public ICommand MouseDownCommand
+        {
+            get
+            {
+                if (_mouseDownCommand == null)
+                {
+                    _mouseDownCommand = new RelayCommand(param => this.MouseDown(param));
+                }
+                return _mouseDownCommand;
+            }
+        }
+
+        public void MouseDown(object parent)
+        {
+            Point mousePos = Mouse.GetPosition((IInputElement)parent);
+        }
+
+        public ICommand MouseUpCommand
+        {
+            get
+            {
+                if (_mouseUpCommand == null)
+                {
+                    _mouseUpCommand = new RelayCommand(param => this.MouseUp(param));
+                }
+                return _mouseUpCommand;
+            }
+        }
+
+        public void MouseUp(object parent)
+        {
+            Point mousePos = Mouse.GetPosition((IInputElement)parent);
+        }
+
+        public ICommand MouseMoveCommand
+        {
+            get
+            {
+                if (_mouseMoveCommand == null)
+                {
+                    _mouseMoveCommand = new RelayCommand(param => this.MouseMove(param));
+                }
+                return _mouseMoveCommand;
+            }
+        }
+
+        public void MouseMove(object parent)
+        {
+            Point mousePos = Mouse.GetPosition((IInputElement)parent);
+
+            Coordinates = "X: " + ((int)mousePos.X).ToString() + ", Y: " + ((int)mousePos.Y).ToString();
+        }
+
         public ICommand ChangeLanguageCommand
         {
             get
             {
                 if (_changeLanguageCommand == null)
-                    _changeLanguageCommand = new RelayCommand(param => ChangeLanguage(param));
+                    _changeLanguageCommand = new RelayCommand(param => this.ChangeLanguage(param));
                 return _changeLanguageCommand;
             }
         }
