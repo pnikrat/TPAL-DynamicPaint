@@ -49,6 +49,7 @@ namespace Dynamic_Paint.ViewModels
         private RelayCommand _drawLineCommand;
         private RelayCommand _drawRectangleCommand;
         private RelayCommand _drawEllipseCommand;
+        private RelayCommand _undoCommand;
 
         private RelayCommand _mouseDownCommand;
         private RelayCommand _mouseUpCommand;
@@ -195,6 +196,31 @@ namespace Dynamic_Paint.ViewModels
             DrawingLine = false;
             DrawingRectangle = false;
             DrawingEllipse = _isDrawingToolChosen = true;
+        }
+
+        public ICommand UndoCommand
+        {
+            get
+            {
+                if (_undoCommand == null)
+                {
+                    _undoCommand = new RelayCommand(param => this.Undo(), param => this.CanUndo());
+                }
+                return _undoCommand;
+            }
+        }
+
+        public void Undo()
+        {
+            SceneObjects.RemoveAt(SceneObjects.Count - 1);
+        }
+
+        public bool CanUndo()
+        {
+            if (SceneObjects.Count == 0)
+                return false;
+            else
+                return true;
         }
 
         public ICommand MouseDownCommand

@@ -51,7 +51,7 @@
             <xctk:ColorPicker AvailableColorsSortingMode="HueSaturationBrightness" ShowAdvancedButton="False" 
                               ShowStandardColors="False" DisplayColorAndName="True"
                               SelectedColor="Black" Width="Auto" AvailableColorsHeader="{Binding Path=ColorsHeader, Source={StaticResource Resources}}"/>
-            <ComboBox Width="60" SelectedIndex="1">
+            <ComboBox Width="60" Height="30" SelectedIndex="1">
                 <ComboBoxItem>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Margin="0 2 6 0">3</TextBlock>
@@ -91,6 +91,10 @@
                               MaxHeight="25" MaxWidth="25" Command="{Binding DrawEllipseCommand}" IsChecked="{Binding Path=DrawingEllipse}">
                     <Image Source="Icons/ellipse.png" />
                 </ToggleButton>
+                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
+                        MaxHeight="25" MaxWidth="25" Command="{Binding UndoCommand}">
+                    <Image Source="Icons/undo.ico" />
+                </Button>
             </StackPanel>
         </WrapPanel>
         
