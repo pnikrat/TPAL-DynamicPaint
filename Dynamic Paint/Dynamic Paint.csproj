@@ -108,6 +108,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Language\CultureResources.cs" />
+    <Compile Include="Models\MyRectangle.cs" />
     <Compile Include="ViewModels\CanvasShapeViewModel.cs" />
     <Compile Include="Models\MyLine.cs" />
     <Compile Include="RelayCommand.cs" />

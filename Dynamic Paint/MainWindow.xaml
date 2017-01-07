@@ -126,10 +126,10 @@
                     
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Path Data="{Binding ShapeData}" Stroke="Black" StrokeThickness="5"/>
+                            <Path Data="{Binding ShapeData}" Stroke="Black" StrokeThickness="3"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
-                   <!-- <ItemsControl.ItemContainerStyle>
+                  <!--  <ItemsControl.ItemContainerStyle>
                         <Style TargetType="ContentPresenter">
                             <Setter Property="Canvas.Left" Value="{Binding Path=Left}" />
                             <Setter Property="Canvas.Top" Value="{Binding Path=Top}" />

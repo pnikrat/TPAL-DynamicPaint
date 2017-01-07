@@ -27,7 +27,7 @@ namespace Dynamic_Paint.ViewModels
             _currentCulture = "en";
             StatusBarText = Properties.Resources.StatusDefaultText;
             Coordinates = "X: 0, Y: 0";
-          //  SceneObjects = new ObservableCollection<CanvasShape>();
+            _isDrawing = false;
         }
 
         private bool _english;
@@ -44,6 +44,7 @@ namespace Dynamic_Paint.ViewModels
         private ObservableCollection<CanvasShapeViewModel> _sceneObjects = new ObservableCollection<CanvasShapeViewModel>();
         public CanvasShapeViewModel _currentlyDrawnShapeRef;
         private bool _isDrawing;
+        private bool _isDrawingToolChosen;
 
         private RelayCommand _drawLineCommand;
         private RelayCommand _drawRectangleCommand;
@@ -151,7 +152,7 @@ namespace Dynamic_Paint.ViewModels
         public void DrawLine()
         {
             StatusBarText = Properties.Resources.StatusDrawingLine;
-            DrawingLine = true;
+            DrawingLine = _isDrawingToolChosen = true;
             DrawingRectangle = false;
             DrawingEllipse = false;
         }
@@ -172,7 +173,7 @@ namespace Dynamic_Paint.ViewModels
         {
             StatusBarText = Properties.Resources.StatusDrawingRectangle;
             DrawingLine = false;
-            DrawingRectangle = true;
+            DrawingRectangle = _isDrawingToolChosen = true;
             DrawingEllipse = false;
         }
 
@@ -193,7 +194,7 @@ namespace Dynamic_Paint.ViewModels
             StatusBarText = Properties.Resources.StatusDrawingEllipse;
             DrawingLine = false;
             DrawingRectangle = false;
-            DrawingEllipse = true;
+            DrawingEllipse = _isDrawingToolChosen = true;
         }
 
         public ICommand MouseDownCommand
@@ -211,11 +212,16 @@ namespace Dynamic_Paint.ViewModels
         public void MouseDown(object parent)
         {
             IInputElement canvas = (IInputElement)parent;
-            if (canvas.IsMouseOver && _drawingLine)
+            if (canvas.IsMouseOver && _isDrawingToolChosen)
             {
                 _isDrawing = true;
                 Point mousePos = Mouse.GetPosition(canvas);
-                MyLine shape = new MyLine(mousePos.X, mousePos.Y, mousePos.X, mousePos.Y);
+                _currentlyDrawnShapeRef = null;
+                CanvasShapeViewModel shape = new CanvasShapeViewModel();
+                if (_drawingLine)
+                    shape = new MyLine(mousePos.X, mousePos.Y, mousePos.X, mousePos.Y);
+                else
+                    shape = new MyRectangle(mousePos.X, mousePos.Y, mousePos.X, mousePos.Y);
                 _currentlyDrawnShapeRef = shape;
                 SceneObjects.Add(shape);
             }
@@ -235,10 +241,10 @@ namespace Dynamic_Paint.ViewModels
 
         public void MouseUp(object parent)
         {
+            _isDrawing = false;
             IInputElement canvas = (IInputElement)parent;
             if (canvas.IsMouseOver && _isDrawing)
-            {
-                _isDrawing = false;
+            {                
                 Point mousePos = Mouse.GetPosition(canvas);
                 _currentlyDrawnShapeRef.UpdatePosition(mousePos.X, mousePos.Y);
             }
@@ -259,7 +265,7 @@ namespace Dynamic_Paint.ViewModels
         public void MouseMove(object parent)
         {
             Point mousePos = Mouse.GetPosition((IInputElement)parent);
-            if (_currentlyDrawnShapeRef != null && _isDrawing)
+            if (_currentlyDrawnShapeRef != null && _isDrawing && Mouse.LeftButton == MouseButtonState.Pressed)
             {
                 _currentlyDrawnShapeRef.UpdatePosition(mousePos.X, mousePos.Y);
             }
