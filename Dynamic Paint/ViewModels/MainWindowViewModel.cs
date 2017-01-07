@@ -29,6 +29,9 @@ namespace Dynamic_Paint.ViewModels
             StatusBarText = Properties.Resources.StatusDefaultText;
             Coordinates = "X: 0, Y: 0";
             _isDrawing = false;
+            _canvasWidth = 1024;
+            _canvasHeight = 768;
+            _canvasBackground = new SolidColorBrush(Color.FromRgb(255,255,255));
 
             for (int i = 2; i <= 9; i++)
                 _strokeThicknessOptions.Add(i.ToString());
@@ -44,6 +47,12 @@ namespace Dynamic_Paint.ViewModels
 
         private string _statusBarText;
         private string _coordinates;
+
+        private int _canvasWidth;
+        private int _canvasHeight;
+        private Brush _canvasBackground;
+
+        private string _pathToLoadedFile;
 
         private ObservableCollection<string> _strokeThicknessOptions = new ObservableCollection<string>();
         private string _selectedStrokeThickness;
@@ -69,6 +78,8 @@ namespace Dynamic_Paint.ViewModels
         private RelayCommand _mouseDownCommand;
         private RelayCommand _mouseUpCommand;
         private RelayCommand _mouseMoveCommand;
+
+        private RelayCommand _clearCanvasCommand;
 
         private RelayCommand _changeLanguageCommand;
        
@@ -110,6 +121,45 @@ namespace Dynamic_Paint.ViewModels
             {
                 _coordinates = value;
                 base.OnPropertyChanged("Coordinates");
+            }
+        }
+
+        public int CanvasWidth
+        {
+            get { return _canvasWidth; }
+            set
+            {
+                _canvasWidth = value;
+                base.OnPropertyChanged("CanvasWidth");
+            }
+        }
+
+        public int CanvasHeight
+        {
+            get { return _canvasHeight; }
+            set
+            {
+                _canvasHeight = value;
+                base.OnPropertyChanged("CanvasHeight");
+            }
+        }
+
+        public Brush CanvasBackground
+        {
+            get { return _canvasBackground; }
+            set
+            {
+                _canvasBackground = value;
+                base.OnPropertyChanged("CanvasBackground");
+            }
+        }
+
+        public string PathToLoadedFile
+        {
+            get { return _pathToLoadedFile; }
+            set
+            {
+                _pathToLoadedFile = value;
             }
         }
 
@@ -346,6 +396,22 @@ namespace Dynamic_Paint.ViewModels
             }
 
             Coordinates = "X: " + ((int)mousePos.X).ToString() + ", Y: " + ((int)mousePos.Y).ToString();
+        }
+
+        public ICommand ClearCanvasCommand
+        {
+            get
+            {
+                if (_clearCanvasCommand == null)
+                    _clearCanvasCommand = new RelayCommand(param => this.ClearCanvas());
+                return _clearCanvasCommand;
+            }
+        }
+
+        public void ClearCanvas()
+        {
+            for (int i = _sceneObjects.Count - 1; i >= 0; i--)
+                _sceneObjects.RemoveAt(i);
         }
 
         public ICommand ChangeLanguageCommand

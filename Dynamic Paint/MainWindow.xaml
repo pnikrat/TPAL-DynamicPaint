@@ -12,6 +12,12 @@
         WindowState="Maximized"
         MinWidth="640" MinHeight="480"
         Title="{Binding Path=MainWindowTitle, Source={StaticResource Resources}}">
+    <Window.CommandBindings>
+        <CommandBinding Command="Open" Executed="OpenCommandBinding_Executed"></CommandBinding>
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Key="O" Modifiers="Ctrl" Command="Open"></KeyBinding>
+    </Window.InputBindings>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -30,7 +36,7 @@
             <Menu>
                 <MenuItem Header="{Binding Path=FileMenuText, Source={StaticResource Resources}}">
                     <MenuItem Header="{Binding Path=FileMenuNewText, Source={StaticResource Resources}}" />
-                    <MenuItem Header="{Binding Path=FileMenuOpenText, Source={StaticResource Resources}}" />
+                    <MenuItem Header="{Binding Path=FileMenuOpenText, Source={StaticResource Resources}}" Command="Open" InputGestureText="Ctrl+O" />
                     <MenuItem Header="{Binding Path=FileMenuSaveText, Source={StaticResource Resources}}" />
                     <Separator />
                     <MenuItem Header="{Binding Path=FileMenuExitText, Source={StaticResource Resources}}" />
@@ -95,7 +101,8 @@
                 <ItemsControl ItemsSource="{Binding Path=SceneObjects}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <Canvas Grid.Column="0" Grid.Row="0" Background="White" Name="Scene" Width="1024" Height="768" IsItemsHost="True">
+                            <Canvas Grid.Column="0" Grid.Row="0" Background="{Binding Path=CanvasBackground}" Name="Scene" 
+                                    Width="{Binding Path=CanvasWidth}" Height="{Binding Path=CanvasHeight}" IsItemsHost="True">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="MouseLeftButtonDown">
                                         <i:InvokeCommandAction Command="{Binding MouseDownCommand}" CommandParameter="{Binding ElementName=Scene}" />
