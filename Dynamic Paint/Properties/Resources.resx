@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ColorPickerTooltip" xml:space="preserve">
+    <value>Pick a color in which you want to draw shapes</value>
+  </data>
   <data name="ColorsHeader" xml:space="preserve">
     <value>Available colors</value>
+  </data>
+  <data name="EllipseTooltip" xml:space="preserve">
+    <value>Select to start drawing ellipsis (mouse drag &amp; drop)</value>
   </data>
   <data name="FileMenuExitText" xml:space="preserve">
     <value>Exit</value>
@@ -144,8 +150,14 @@
   <data name="LanguageMenuText" xml:space="preserve">
     <value>Language</value>
   </data>
+  <data name="LineTooltip" xml:space="preserve">
+    <value>Select to start drawing lines (mouse drag &amp; drop)</value>
+  </data>
   <data name="MainWindowTitle" xml:space="preserve">
     <value>Dynamic Paint</value>
+  </data>
+  <data name="RectangleTooltip" xml:space="preserve">
+    <value>Select to start drawing rectangles (mouse drag &amp; drop)</value>
   </data>
   <data name="StatusDefaultText" xml:space="preserve">
     <value>Choose a tool to draw</value>
@@ -159,7 +171,13 @@
   <data name="StatusDrawingRectangle" xml:space="preserve">
     <value>Drawing a rectangle</value>
   </data>
+  <data name="StrokeThicknessPickerTooltip" xml:space="preserve">
+    <value>Pick a thickness of drawn shape</value>
+  </data>
   <data name="TestText" xml:space="preserve">
     <value>Test text!</value>
+  </data>
+  <data name="UndoTooltip" xml:space="preserve">
+    <value>Press to undo your last drawing action</value>
   </data>
 </root>

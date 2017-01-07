@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ColorPickerTooltip" xml:space="preserve">
+    <value>Wybierz kolor w jakim chcesz rysować kształty</value>
+  </data>
   <data name="ColorsHeader" xml:space="preserve">
     <value>Dostępne kolory</value>
+  </data>
+  <data name="EllipseTooltip" xml:space="preserve">
+    <value>Zaznacz aby rozpocząć rysowanie elips (przeciągnij i upuść przy pomocy myszy)</value>
   </data>
   <data name="FileMenuExitText" xml:space="preserve">
     <value>Wyjdź</value>
@@ -144,8 +150,14 @@
   <data name="LanguageMenuText" xml:space="preserve">
     <value>Język</value>
   </data>
+  <data name="LineTooltip" xml:space="preserve">
+    <value>Zaznacz aby rozpocząć rysowanie linii (przeciągnij i upuść przy pomocy myszy)</value>
+  </data>
   <data name="MainWindowTitle" xml:space="preserve">
     <value>Dynamic Paint</value>
+  </data>
+  <data name="RectangleTooltip" xml:space="preserve">
+    <value>Zaznacz aby rozpocząć rysowanie prostokątów (przeciągnij i upuść przy pomocy myszy)</value>
   </data>
   <data name="StatusDefaultText" xml:space="preserve">
     <value>Wybierz narzędzie aby zacząć rysować</value>
@@ -159,7 +171,13 @@
   <data name="StatusDrawingRectangle" xml:space="preserve">
     <value>Rysowanie prostokąta</value>
   </data>
+  <data name="StrokeThicknessPickerTooltip" xml:space="preserve">
+    <value>Wybierz grubość rysowanego kształtu</value>
+  </data>
   <data name="TestText" xml:space="preserve">
     <value>Testowy tekst!</value>
+  </data>
+  <data name="UndoTooltip" xml:space="preserve">
+    <value>Wciśnij aby cofnąć swój ostatnio narysowany kształt</value>
   </data>
 </root>

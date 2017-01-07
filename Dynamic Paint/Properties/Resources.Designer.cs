@@ -61,11 +61,29 @@ namespace Dynamic_Paint.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pick a color in which you want to draw shapes.
+        /// </summary>
+        public static string ColorPickerTooltip {
+            get {
+                return ResourceManager.GetString("ColorPickerTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Available colors.
         /// </summary>
         public static string ColorsHeader {
             get {
                 return ResourceManager.GetString("ColorsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select to start drawing ellipsis (mouse drag &amp; drop).
+        /// </summary>
+        public static string EllipseTooltip {
+            get {
+                return ResourceManager.GetString("EllipseTooltip", resourceCulture);
             }
         }
         
@@ -142,11 +160,29 @@ namespace Dynamic_Paint.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select to start drawing lines (mouse drag &amp; drop).
+        /// </summary>
+        public static string LineTooltip {
+            get {
+                return ResourceManager.GetString("LineTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dynamic Paint.
         /// </summary>
         public static string MainWindowTitle {
             get {
                 return ResourceManager.GetString("MainWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select to start drawing rectangles (mouse drag &amp; drop).
+        /// </summary>
+        public static string RectangleTooltip {
+            get {
+                return ResourceManager.GetString("RectangleTooltip", resourceCulture);
             }
         }
         
@@ -187,11 +223,29 @@ namespace Dynamic_Paint.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pick a thickness of drawn shape.
+        /// </summary>
+        public static string StrokeThicknessPickerTooltip {
+            get {
+                return ResourceManager.GetString("StrokeThicknessPickerTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Test text!.
         /// </summary>
         public static string TestText {
             get {
                 return ResourceManager.GetString("TestText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Press to undo your last drawing action.
+        /// </summary>
+        public static string UndoTooltip {
+            get {
+                return ResourceManager.GetString("UndoTooltip", resourceCulture);
             }
         }
     }

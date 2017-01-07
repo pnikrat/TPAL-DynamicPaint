@@ -56,9 +56,11 @@
             </WrapPanel.Background>
             <xctk:ColorPicker AvailableColorsSortingMode="HueSaturationBrightness" ShowAdvancedButton="False" 
                               ShowStandardColors="False" DisplayColorAndName="True" SelectedColor="{Binding SelectedColor}"
-                              Width="Auto" AvailableColorsHeader="{Binding Path=ColorsHeader, Source={StaticResource Resources}}"/>
+                              Width="Auto" AvailableColorsHeader="{Binding Path=ColorsHeader, Source={StaticResource Resources}}"
+                              ToolTip="{Binding Path=ColorPickerTooltip, Source={StaticResource Resources}}"/>
             <ComboBox Width="60" Height="30" 
-                      ItemsSource="{Binding StrokeThicknessOptions}" SelectedItem="{Binding SelectedStrokeThickness}">
+                      ItemsSource="{Binding StrokeThicknessOptions}" SelectedItem="{Binding SelectedStrokeThickness}"
+                      ToolTip="{Binding Path=StrokeThicknessPickerTooltip, Source={StaticResource Resources}}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -70,20 +72,24 @@
             </ComboBox>
 
             <StackPanel Orientation="Horizontal">
-                <ToggleButton Style="{StaticResource {x:Static ToolBar.ToggleButtonStyleKey}}" 
-                              MaxHeight="25" MaxWidth="25" Command="{Binding DrawLineCommand}" IsChecked="{Binding Path=DrawingLine}">
+                <ToggleButton Style="{StaticResource {x:Static ToolBar.ToggleButtonStyleKey}}"
+                              MaxHeight="25" MaxWidth="25" Command="{Binding DrawLineCommand}" IsChecked="{Binding Path=DrawingLine}"
+                              ToolTip="{Binding Path=LineTooltip, Source={StaticResource Resources}}">
                     <Image Source="Icons/line.ico" />
                 </ToggleButton>
                 <ToggleButton Style="{StaticResource {x:Static ToolBar.ToggleButtonStyleKey}}"
-                              MaxHeight="25" MaxWidth="25" Command="{Binding DrawRectangleCommand}" IsChecked="{Binding Path=DrawingRectangle}">
+                              MaxHeight="25" MaxWidth="25" Command="{Binding DrawRectangleCommand}" IsChecked="{Binding Path=DrawingRectangle}"
+                              ToolTip="{Binding Path=RectangleTooltip, Source={StaticResource Resources}}">
                     <Image Source="Icons/rectangle.png" />
                 </ToggleButton>
                 <ToggleButton Style="{StaticResource {x:Static ToolBar.ToggleButtonStyleKey}}"
-                              MaxHeight="25" MaxWidth="25" Command="{Binding DrawEllipseCommand}" IsChecked="{Binding Path=DrawingEllipse}">
+                              MaxHeight="25" MaxWidth="25" Command="{Binding DrawEllipseCommand}" IsChecked="{Binding Path=DrawingEllipse}"
+                              ToolTip="{Binding Path=EllipseTooltip, Source={StaticResource Resources}}">
                     <Image Source="Icons/ellipse.png" />
                 </ToggleButton>
                 <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
-                        MaxHeight="25" MaxWidth="25" Command="{Binding UndoCommand}">
+                        MaxHeight="25" MaxWidth="25" Command="{Binding UndoCommand}"
+                        ToolTip="{Binding Path=UndoTooltip, Source={StaticResource Resources}}">
                     <Image Source="Icons/undo.ico" />
                 </Button>
             </StackPanel>
