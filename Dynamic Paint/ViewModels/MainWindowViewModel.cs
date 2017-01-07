@@ -220,8 +220,10 @@ namespace Dynamic_Paint.ViewModels
                 CanvasShapeViewModel shape = new CanvasShapeViewModel();
                 if (_drawingLine)
                     shape = new MyLine(mousePos.X, mousePos.Y, mousePos.X, mousePos.Y);
-                else
+                else if (_drawingRectangle)
                     shape = new MyRectangle(mousePos.X, mousePos.Y, mousePos.X, mousePos.Y);
+                else
+                    shape = new MyEllipse(mousePos.X, mousePos.Y, mousePos.X, mousePos.Y);
                 _currentlyDrawnShapeRef = shape;
                 SceneObjects.Add(shape);
             }
