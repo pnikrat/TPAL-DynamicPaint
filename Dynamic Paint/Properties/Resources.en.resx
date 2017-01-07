@@ -135,6 +135,9 @@
   <data name="FileMenuOpenText" xml:space="preserve">
     <value>Open</value>
   </data>
+  <data name="FileMenuSaveAsText" xml:space="preserve">
+    <value>Save as...</value>
+  </data>
   <data name="FileMenuSaveText" xml:space="preserve">
     <value>Save</value>
   </data>

@@ -115,6 +115,15 @@ namespace Dynamic_Paint.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save as....
+        /// </summary>
+        public static string FileMenuSaveAsText {
+            get {
+                return ResourceManager.GetString("FileMenuSaveAsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string FileMenuSaveText {

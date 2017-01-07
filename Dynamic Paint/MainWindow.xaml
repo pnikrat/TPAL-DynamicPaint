@@ -38,6 +38,7 @@
                     <MenuItem Header="{Binding Path=FileMenuNewText, Source={StaticResource Resources}}" />
                     <MenuItem Header="{Binding Path=FileMenuOpenText, Source={StaticResource Resources}}" Command="Open" InputGestureText="Ctrl+O" />
                     <MenuItem Header="{Binding Path=FileMenuSaveText, Source={StaticResource Resources}}" />
+                    <MenuItem Header="{Binding Path=FileMenuSaveAsText, Source={StaticResource Resources}}" />
                     <Separator />
                     <MenuItem Header="{Binding Path=FileMenuExitText, Source={StaticResource Resources}}" />
                 </MenuItem>
