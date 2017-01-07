@@ -49,8 +49,8 @@
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
             </WrapPanel.Background>
             <xctk:ColorPicker AvailableColorsSortingMode="HueSaturationBrightness" ShowAdvancedButton="False" 
-                              ShowStandardColors="False" DisplayColorAndName="True"
-                              SelectedColor="Black" Width="Auto" AvailableColorsHeader="{Binding Path=ColorsHeader, Source={StaticResource Resources}}"/>
+                              ShowStandardColors="False" DisplayColorAndName="True" SelectedColor="{Binding SelectedColor}"
+                              Width="Auto" AvailableColorsHeader="{Binding Path=ColorsHeader, Source={StaticResource Resources}}"/>
             <ComboBox Width="60" Height="30" 
                       ItemsSource="{Binding StrokeThicknessOptions}" SelectedItem="{Binding SelectedStrokeThickness}">
                 <ComboBox.ItemTemplate>
@@ -115,7 +115,7 @@
                     
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Path Data="{Binding ShapeData}" Stroke="Black" StrokeThickness="{Binding StrokeThickness}"/>
+                            <Path Data="{Binding ShapeData}" Stroke="{Binding StrokeColor}" StrokeThickness="{Binding StrokeThickness}"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                   <!--  <ItemsControl.ItemContainerStyle>

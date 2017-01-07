@@ -11,9 +11,10 @@ namespace Dynamic_Paint.Models
 {
     public class MyLine : CanvasShapeViewModel
     {
-        public MyLine(double x1, double y1, int strokeThickness)
+        public MyLine(double x1, double y1, int strokeThickness, Brush strokeColor)
         {
             StrokeThickness = strokeThickness;
+            StrokeColor = strokeColor;
             Top = y1;
             Left = x1;
             ShapeData = new LineGeometry(new Point(x1, y1), new Point(x1, y1));

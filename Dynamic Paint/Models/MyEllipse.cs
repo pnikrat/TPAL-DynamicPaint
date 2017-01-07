@@ -13,9 +13,10 @@ namespace Dynamic_Paint.Models
         double originX;
         double originY;
 
-        public MyEllipse(double x1, double y1, int strokeThickness)
+        public MyEllipse(double x1, double y1, int strokeThickness, Brush strokeColor)
         {
             StrokeThickness = strokeThickness;
+            StrokeColor = strokeColor;
             Top = originY = y1;
             Left = originX = x1;
 

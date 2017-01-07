@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Shapes;
 
 namespace Dynamic_Paint.ViewModels
@@ -33,6 +34,8 @@ namespace Dynamic_Paint.ViewModels
                 _strokeThicknessOptions.Add(i.ToString());
             _selectedStrokeThickness = "5";
             _selectedStrokeThicknessNumeric = 5;
+            _selectedColor = Color.FromRgb(0, 0, 0);
+            _selectedColorBrush = new SolidColorBrush(_selectedColor);
         }
 
         private bool _english;
@@ -45,6 +48,9 @@ namespace Dynamic_Paint.ViewModels
         private ObservableCollection<string> _strokeThicknessOptions = new ObservableCollection<string>();
         private string _selectedStrokeThickness;
         private int _selectedStrokeThicknessNumeric;
+
+        private Color _selectedColor;
+        private Brush _selectedColorBrush;
 
         private bool _drawingLine;
         private bool _drawingRectangle;
@@ -125,6 +131,17 @@ namespace Dynamic_Paint.ViewModels
                 _selectedStrokeThickness = value;
                 _selectedStrokeThicknessNumeric = Int32.Parse(_selectedStrokeThickness); 
                 base.OnPropertyChanged("SelectedStrokeThickness");
+            }
+        }
+
+        public Color SelectedColor
+        {
+            get { return _selectedColor; }
+            set
+            {
+                _selectedColor = value;
+                _selectedColorBrush = new SolidColorBrush(_selectedColor);
+                base.OnPropertyChanged("SelectedColor");
             }
         }
 
@@ -275,11 +292,11 @@ namespace Dynamic_Paint.ViewModels
                 _currentlyDrawnShapeRef = null;
                 CanvasShapeViewModel shape = new CanvasShapeViewModel();
                 if (_drawingLine)
-                    shape = new MyLine(mousePos.X, mousePos.Y, _selectedStrokeThicknessNumeric);
+                    shape = new MyLine(mousePos.X, mousePos.Y, _selectedStrokeThicknessNumeric, _selectedColorBrush);
                 else if (_drawingRectangle)
-                    shape = new MyRectangle(mousePos.X, mousePos.Y, _selectedStrokeThicknessNumeric);
+                    shape = new MyRectangle(mousePos.X, mousePos.Y, _selectedStrokeThicknessNumeric, _selectedColorBrush);
                 else
-                    shape = new MyEllipse(mousePos.X, mousePos.Y, _selectedStrokeThicknessNumeric);
+                    shape = new MyEllipse(mousePos.X, mousePos.Y, _selectedStrokeThicknessNumeric, _selectedColorBrush);
                 _currentlyDrawnShapeRef = shape;
                 SceneObjects.Add(shape);
             }
