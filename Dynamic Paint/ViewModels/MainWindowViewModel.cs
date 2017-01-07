@@ -28,6 +28,11 @@ namespace Dynamic_Paint.ViewModels
             StatusBarText = Properties.Resources.StatusDefaultText;
             Coordinates = "X: 0, Y: 0";
             _isDrawing = false;
+
+            for (int i = 2; i <= 9; i++)
+                _strokeThicknessOptions.Add(i.ToString());
+            _selectedStrokeThickness = "5";
+            _selectedStrokeThicknessNumeric = 5;
         }
 
         private bool _english;
@@ -36,6 +41,10 @@ namespace Dynamic_Paint.ViewModels
 
         private string _statusBarText;
         private string _coordinates;
+
+        private ObservableCollection<string> _strokeThicknessOptions = new ObservableCollection<string>();
+        private string _selectedStrokeThickness;
+        private int _selectedStrokeThicknessNumeric;
 
         private bool _drawingLine;
         private bool _drawingRectangle;
@@ -95,6 +104,27 @@ namespace Dynamic_Paint.ViewModels
             {
                 _coordinates = value;
                 base.OnPropertyChanged("Coordinates");
+            }
+        }
+
+        public ObservableCollection<string> StrokeThicknessOptions
+        {
+            get { return _strokeThicknessOptions; }
+            set
+            {
+                _strokeThicknessOptions = value;
+                base.OnPropertyChanged("StrokeThicknessOptions");
+            }
+        }
+
+        public string SelectedStrokeThickness
+        {
+            get { return _selectedStrokeThickness; }
+            set
+            {
+                _selectedStrokeThickness = value;
+                _selectedStrokeThicknessNumeric = Int32.Parse(_selectedStrokeThickness); 
+                base.OnPropertyChanged("SelectedStrokeThickness");
             }
         }
 
@@ -245,11 +275,11 @@ namespace Dynamic_Paint.ViewModels
                 _currentlyDrawnShapeRef = null;
                 CanvasShapeViewModel shape = new CanvasShapeViewModel();
                 if (_drawingLine)
-                    shape = new MyLine(mousePos.X, mousePos.Y, mousePos.X, mousePos.Y);
+                    shape = new MyLine(mousePos.X, mousePos.Y, _selectedStrokeThicknessNumeric);
                 else if (_drawingRectangle)
-                    shape = new MyRectangle(mousePos.X, mousePos.Y, mousePos.X, mousePos.Y);
+                    shape = new MyRectangle(mousePos.X, mousePos.Y, _selectedStrokeThicknessNumeric);
                 else
-                    shape = new MyEllipse(mousePos.X, mousePos.Y, mousePos.X, mousePos.Y);
+                    shape = new MyEllipse(mousePos.X, mousePos.Y, _selectedStrokeThicknessNumeric);
                 _currentlyDrawnShapeRef = shape;
                 SceneObjects.Add(shape);
             }

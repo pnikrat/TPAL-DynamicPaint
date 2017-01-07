@@ -13,13 +13,14 @@ namespace Dynamic_Paint.Models
         double originX;
         double originY;
 
-        public MyEllipse(double x1, double y1, double x2, double y2)
+        public MyEllipse(double x1, double y1, int strokeThickness)
         {
-            base.Top = originY = y1;
-            base.Left = originX = x1;
+            StrokeThickness = strokeThickness;
+            Top = originY = y1;
+            Left = originX = x1;
 
-            double radiusX = Math.Abs(x2 - x1) / 2;
-            double radiusY = Math.Abs(y2 - y1) / 2;
+            double radiusX = Math.Abs(x1 - x1) / 2;
+            double radiusY = Math.Abs(y1 - y1) / 2;
             Point center = new Point(radiusX + Left, radiusY + Top);
             ShapeData = new EllipseGeometry(center, radiusX, radiusY);
         }

@@ -57,9 +57,24 @@ namespace Dynamic_Paint.Models
             }
         }
 
+        private int _strokeThickness;
+
+        public int StrokeThickness
+        {
+            get
+            {
+                return _strokeThickness;
+            }
+            set
+            {
+                _strokeThickness = value;
+                base.OnPropertyChanged("StrokeThickness");
+            }
+        } 
+
         public virtual void UpdatePosition(double x2, double y2)
         {
-
+            
         }
     }
 }
