@@ -41,7 +41,13 @@ namespace Dynamic_Paint.ViewModels
             _selectedColor = Color.FromRgb(0, 0, 0);
             _selectedColorBrush = new SolidColorBrush(_selectedColor);
             WindowTitle = Properties.Resources.UntitledText;
+
+            helper = new ResourceHelper("Dynamic_Paint.Properties.Resources", GetType().Assembly);
+            _workSaved = false;
         }
+
+        private ResourceHelper helper;
+        private bool _workSaved;
 
         private bool _english;
         private bool _polish;
@@ -89,6 +95,15 @@ namespace Dynamic_Paint.ViewModels
 
         private RelayCommand _changeLanguageCommand;
        
+
+        public bool WorkSaved
+        {
+            get { return _workSaved; }
+            set
+            {
+                _workSaved = value;
+            }
+        }
 
         public bool English
         {
@@ -327,6 +342,7 @@ namespace Dynamic_Paint.ViewModels
         public void Undo()
         {
             SceneObjects.RemoveAt(SceneObjects.Count - 1);
+            _workSaved = false;
         }
 
         public bool CanUndo()
@@ -354,6 +370,7 @@ namespace Dynamic_Paint.ViewModels
             IInputElement canvas = (IInputElement)parent;
             if (canvas.IsMouseOver && _isDrawingToolChosen)
             {
+                _workSaved = false;
                 _isDrawing = true;
                 Point mousePos = Mouse.GetPosition(canvas);
                 _currentlyDrawnShapeRef = null;
@@ -429,6 +446,9 @@ namespace Dynamic_Paint.ViewModels
         {
             for (int i = _sceneObjects.Count - 1; i >= 0; i--)
                 _sceneObjects.RemoveAt(i);
+            string untitledText = helper.GetResourceValue("UntitledText", CultureInfo.CreateSpecificCulture(_currentCulture));
+            WindowTitle = untitledText;
+            _workSaved = false;
         }
 
         public ICommand SaveCanvasToFileCommand
@@ -470,6 +490,7 @@ namespace Dynamic_Paint.ViewModels
             {
                 imageEncoder.Save(fs);
             }
+            _workSaved = true;
         }
 
         public ICommand ChangeLanguageCommand
@@ -484,7 +505,6 @@ namespace Dynamic_Paint.ViewModels
 
         public void ChangeLanguage(object chosenCulture)
         {
-            ResourceHelper helper = new ResourceHelper("Dynamic_Paint.Properties.Resources", GetType().Assembly);
             string updatedStatusBarTextKey = helper.GetResourceName(StatusBarText, CultureInfo.CreateSpecificCulture(_currentCulture));
             string updatedUntitledTextKey = helper.GetResourceName(WindowTitle.Replace(" - Dynamic Paint", ""),
                     CultureInfo.CreateSpecificCulture(_currentCulture));

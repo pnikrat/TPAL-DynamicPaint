@@ -33,6 +33,22 @@ namespace Dynamic_Paint
             InitializeComponent();
         }
 
+        private void NewCommandBinding_Executed(object sender, RoutedEventArgs e)
+        {
+            var vm = this.DataContext as MainWindowViewModel;
+            if (vm.WorkSaved)
+            {
+                Brush background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+                vm.CanvasBackground = background;
+                vm.PathToLoadedFile = "";
+                vm.ClearCanvasCommand.Execute(null);
+            }
+            else
+            {
+                /* MessageBoxResult result = MessageBox.Show("Test"); */
+            }
+        }
+
         private void OpenCommandBinding_Executed(object sender, RoutedEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -68,6 +84,7 @@ namespace Dynamic_Paint
                     vm.CanvasBackground = loadedImage;
                     vm.ClearCanvasCommand.Execute(null);
                     vm.PathToLoadedFile = ofd.FileName;
+                    vm.WorkSaved = true;
                 }
             }
         }
@@ -75,7 +92,7 @@ namespace Dynamic_Paint
         private void SaveCommandBinding_Executed(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as MainWindowViewModel;
-            if (vm.PathToLoadedFile == null)
+            if (vm.PathToLoadedFile == null || vm.PathToLoadedFile == "")
                 SaveAsCommandBinding_Executed(sender, e);
             else
             {

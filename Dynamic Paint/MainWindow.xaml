@@ -13,11 +13,13 @@
         MinWidth="640" MinHeight="480"
         Title="{Binding Path=WindowTitle}">
     <Window.CommandBindings>
+        <CommandBinding Command="New" Executed="NewCommandBinding_Executed"></CommandBinding>
         <CommandBinding Command="Open" Executed="OpenCommandBinding_Executed"></CommandBinding>
         <CommandBinding Command="Save" Executed="SaveCommandBinding_Executed"></CommandBinding>
         <CommandBinding Command="SaveAs" Executed="SaveAsCommandBinding_Executed"></CommandBinding>
     </Window.CommandBindings>
     <Window.InputBindings>
+        <KeyBinding Key="N" Modifiers="Ctrl" Command="New"></KeyBinding>
         <KeyBinding Key="O" Modifiers="Ctrl" Command="Open"></KeyBinding>
         <KeyBinding Key="S" Modifiers="Ctrl" Command="Save"></KeyBinding>
     </Window.InputBindings>
@@ -38,7 +40,8 @@
             </StackPanel.Background>
             <Menu>
                 <MenuItem Header="{Binding Path=FileMenuText, Source={StaticResource Resources}}">
-                    <MenuItem Header="{Binding Path=FileMenuNewText, Source={StaticResource Resources}}" />
+                    <MenuItem Header="{Binding Path=FileMenuNewText, Source={StaticResource Resources}}"
+                              Command="New" InputGestureText="Ctrl+N" />
                     <MenuItem Header="{Binding Path=FileMenuOpenText, Source={StaticResource Resources}}" 
                               Command="Open" InputGestureText="Ctrl+O" />
                     <MenuItem Header="{Binding Path=FileMenuSaveText, Source={StaticResource Resources}}" 
