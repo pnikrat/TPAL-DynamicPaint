@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dynamic Paint", "Dynamic Pa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternalShared", "InternalShared\InternalShared.csproj", "{21F2305B-8E45-4559-8C01-73B833FCC8BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginFill", "PluginFill\PluginFill.csproj", "{2AC5D998-5DD3-4652-B3D3-4F4C24B32E92}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginResize", "PluginResize\PluginResize.csproj", "{2AC5D998-5DD3-4652-B3D3-4F4C24B32E92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

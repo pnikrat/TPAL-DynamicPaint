@@ -24,7 +24,7 @@ using System.Windows.Shapes;
 
 namespace Dynamic_Paint.ViewModels
 {
-    public class MainWindowViewModel : ViewModelBase
+    public class MainWindowViewModel : ViewModelBase, IHost
     {
         public MainWindowViewModel()
         {
@@ -583,6 +583,7 @@ namespace Dynamic_Paint.ViewModels
         public void ImportPlugins()
         {
             _pluginsContainer.ComposeParts(this);
+            _pluginView.AcceptHostInterface(this as IHost);
         }
 
         public ICommand ExitAppCommand
@@ -599,6 +600,16 @@ namespace Dynamic_Paint.ViewModels
         {
             if (_workSaved)
                 Application.Current.MainWindow.Close();
+        }
+
+        public void SetCanvasWidth(int width)
+        {
+            CanvasWidth = width;
+        }
+
+        public void SetCanvasHeight(int height)
+        {
+            CanvasHeight = height;
         }
     }
 }

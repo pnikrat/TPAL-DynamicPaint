@@ -15,17 +15,23 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PluginFill
+namespace PluginResize
 {
     /// <summary>
     /// Interaction logic for FillControl.xaml
     /// </summary>
     [Export(typeof(IPlugin))]
-    public partial class FillControl : UserControl, IPlugin
+    public partial class ResizeControlView : UserControl, IPlugin
     {
-        public FillControl()
+        public ResizeControlView()
         {
             InitializeComponent();
+        }
+
+        public void AcceptHostInterface(IHost hostInterface)
+        {
+            var vm = this.DataContext as ResizeControlViewModel;
+            vm.hostInterface = hostInterface;
         }
     }
 }

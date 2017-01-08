@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace InternalShared
 {
-    public interface IPlugin
+    public interface IHost
     {
-        void AcceptHostInterface(IHost hostInterface);
+        void SetCanvasWidth(int width);
+        void SetCanvasHeight(int height);
     }
 }

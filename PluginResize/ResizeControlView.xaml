@@ -1,18 +1,18 @@
-﻿<UserControl x:Class="PluginFill.FillControl"
+﻿<UserControl x:Class="PluginResize.ResizeControlView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PluginFill"
+             xmlns:local="clr-namespace:PluginResize"
              mc:Ignorable="d" 
              d:DesignHeight="25" d:DesignWidth="25">
     <UserControl.DataContext>
-        <local:FillViewModel />
+        <local:ResizeControlViewModel />
     </UserControl.DataContext>
         <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
-                        MaxHeight="25" MaxWidth="25" Command="{Binding FillCommand}">
+                        MaxHeight="25" MaxWidth="25" Command="{Binding ResizeCommand}">
             <!-- ="{Binding Path=UndoTooltip, Source={StaticResource Resources}}" -->
-            <TextBlock>Test</TextBlock>
-        </Button>
+        <Image Source="Icons/resize.png" />
+    </Button>
 
 </UserControl>
