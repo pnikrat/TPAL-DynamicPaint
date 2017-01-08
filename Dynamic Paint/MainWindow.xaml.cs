@@ -6,10 +6,12 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -97,6 +99,8 @@ namespace Dynamic_Paint
             else
             {
                 Visual x = (Visual)this.FindName("SceneControl");
+
+                //test.RenderTransform = new RotateTransform(90, 512, 384);
                 vm.SaveCanvasToFileCommand.Execute(x);
             }
         }

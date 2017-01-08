@@ -1,4 +1,5 @@
 ﻿using Dynamic_Paint.ViewModels;
+using InternalShared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

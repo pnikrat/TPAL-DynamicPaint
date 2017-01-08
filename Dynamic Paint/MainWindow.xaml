@@ -58,6 +58,10 @@
                     <MenuItem Header="{Binding Path=LanguageMenuPolishText, Source={StaticResource Resources}}"
                               Command="{Binding Path=ChangeLanguageCommand}" CommandParameter="pl" IsChecked="{Binding Path=Polish}"/>
                 </MenuItem>
+                <MenuItem Header="{Binding Path=PluginsMenuText, Source={StaticResource Resources}}">
+                    <MenuItem Header="{Binding Path=PluginsMenuImportText, Source={StaticResource Resources}}"
+                              Command="{Binding Path=ImportPluginsCommand}" />
+                </MenuItem>
             </Menu>
         </StackPanel>
 
@@ -103,11 +107,12 @@
                         ToolTip="{Binding Path=UndoTooltip, Source={StaticResource Resources}}">
                     <Image Source="Icons/undo.ico" />
                 </Button>
+                <ContentControl Content="{Binding PluginView}" />
             </StackPanel>
         </WrapPanel>
         
         <ScrollViewer Grid.Row="2" Grid.Column="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-            <Grid Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}">
+            <Grid Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" Name="SceneGrid">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>

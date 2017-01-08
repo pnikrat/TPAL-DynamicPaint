@@ -178,6 +178,24 @@ namespace Dynamic_Paint.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import plugins.
+        /// </summary>
+        public static string PluginsMenuImportText {
+            get {
+                return ResourceManager.GetString("PluginsMenuImportText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plugins.
+        /// </summary>
+        public static string PluginsMenuText {
+            get {
+                return ResourceManager.GetString("PluginsMenuText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select to start drawing rectangles (mouse drag &amp; drop).
         /// </summary>
         public static string RectangleTooltip {

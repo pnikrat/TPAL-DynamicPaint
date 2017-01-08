@@ -2,12 +2,16 @@
 using Dynamic_Paint.Models;
 using Dynamic_Paint.Properties;
 using Dynamic_Paint.Utilities;
+using InternalShared;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -44,7 +48,18 @@ namespace Dynamic_Paint.ViewModels
 
             helper = new ResourceHelper("Dynamic_Paint.Properties.Resources", GetType().Assembly);
             _workSaved = false;
+
+            string executingPath = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string pluginsPath = System.IO.Path.Combine(executingPath, "plugins");
+            if (!Directory.Exists(pluginsPath))
+                Directory.CreateDirectory(pluginsPath);
+            _pluginsCatalog = new DirectoryCatalog(pluginsPath, "Plugin*.dll");
+            _pluginsContainer = new CompositionContainer(_pluginsCatalog);
         }
+
+        private IPlugin _pluginView;
+        private DirectoryCatalog _pluginsCatalog;
+        private CompositionContainer _pluginsContainer;
 
         private ResourceHelper helper;
         private bool _workSaved;
@@ -95,7 +110,20 @@ namespace Dynamic_Paint.ViewModels
 
         private RelayCommand _changeLanguageCommand;
 
+        private RelayCommand _importPluginsCommand;
+
         private RelayCommand _exitAppCommand;
+
+        [Import(typeof(IPlugin))]
+        public IPlugin PluginView
+        {
+            get { return _pluginView; }
+            set
+            {
+                _pluginView = value;
+                base.OnPropertyChanged("PluginView");
+            }
+        }
 
         public bool WorkSaved
         {
@@ -540,6 +568,21 @@ namespace Dynamic_Paint.ViewModels
             {
                 return;
             }
+        }
+
+        public ICommand ImportPluginsCommand
+        {
+            get
+            {
+                if (_importPluginsCommand == null)
+                    _importPluginsCommand = new RelayCommand(param => this.ImportPlugins());
+                return _importPluginsCommand;
+            }
+        }
+
+        public void ImportPlugins()
+        {
+            _pluginsContainer.ComposeParts(this);
         }
 
         public ICommand ExitAppCommand

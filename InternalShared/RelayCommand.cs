@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Dynamic_Paint
+namespace InternalShared
 {
     public class RelayCommand : ICommand
     {

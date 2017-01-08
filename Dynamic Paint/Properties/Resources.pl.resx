@@ -156,6 +156,12 @@
   <data name="LineTooltip" xml:space="preserve">
     <value>Zaznacz aby rozpocząć rysowanie linii (przeciągnij i upuść przy pomocy myszy)</value>
   </data>
+  <data name="PluginsMenuImportText" xml:space="preserve">
+    <value>Zaimportuj wtyczki</value>
+  </data>
+  <data name="PluginsMenuText" xml:space="preserve">
+    <value>Wtyczki</value>
+  </data>
   <data name="RectangleTooltip" xml:space="preserve">
     <value>Zaznacz aby rozpocząć rysowanie prostokątów (przeciągnij i upuść przy pomocy myszy)</value>
   </data>

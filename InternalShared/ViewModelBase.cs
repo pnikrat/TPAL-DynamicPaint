@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dynamic_Paint.ViewModels
+namespace InternalShared
 {
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
