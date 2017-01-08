@@ -24,7 +24,14 @@ namespace Dynamic_Paint.Utilities
         {
             DictionaryEntry entry = ResourceManager.GetResourceSet(cultureToSearch, true, true)
                 .OfType<DictionaryEntry>().FirstOrDefault(dictionaryEntry => dictionaryEntry.Value.ToString() == value);
-            return entry.Key.ToString();
+            try
+            {
+                return entry.Key.ToString();
+            }
+            catch (NullReferenceException e)
+            {
+                return null;
+            }
         }
 
         public string GetResourceValue(string name, CultureInfo cultureToSearch)

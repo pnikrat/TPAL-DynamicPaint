@@ -156,9 +156,6 @@
   <data name="LineTooltip" xml:space="preserve">
     <value>Zaznacz aby rozpocząć rysowanie linii (przeciągnij i upuść przy pomocy myszy)</value>
   </data>
-  <data name="MainWindowTitle" xml:space="preserve">
-    <value>Dynamic Paint</value>
-  </data>
   <data name="RectangleTooltip" xml:space="preserve">
     <value>Zaznacz aby rozpocząć rysowanie prostokątów (przeciągnij i upuść przy pomocy myszy)</value>
   </data>
@@ -182,5 +179,8 @@
   </data>
   <data name="UndoTooltip" xml:space="preserve">
     <value>Wciśnij aby cofnąć swój ostatnio narysowany kształt</value>
+  </data>
+  <data name="UntitledText" xml:space="preserve">
+    <value>Bez tytułu</value>
   </data>
 </root>

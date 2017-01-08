@@ -156,9 +156,6 @@
   <data name="LineTooltip" xml:space="preserve">
     <value>Select to start drawing lines (mouse drag &amp; drop)</value>
   </data>
-  <data name="MainWindowTitle" xml:space="preserve">
-    <value>Dynamic Paint</value>
-  </data>
   <data name="RectangleTooltip" xml:space="preserve">
     <value>Select to start drawing rectangles (mouse drag &amp; drop)</value>
   </data>
@@ -182,5 +179,8 @@
   </data>
   <data name="UndoTooltip" xml:space="preserve">
     <value>Press to undo your last drawing action</value>
+  </data>
+  <data name="UntitledText" xml:space="preserve">
+    <value>Untitled</value>
   </data>
 </root>

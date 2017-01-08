@@ -178,15 +178,6 @@ namespace Dynamic_Paint.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dynamic Paint.
-        /// </summary>
-        public static string MainWindowTitle {
-            get {
-                return ResourceManager.GetString("MainWindowTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Select to start drawing rectangles (mouse drag &amp; drop).
         /// </summary>
         public static string RectangleTooltip {
@@ -255,6 +246,15 @@ namespace Dynamic_Paint.Properties {
         public static string UndoTooltip {
             get {
                 return ResourceManager.GetString("UndoTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Untitled.
+        /// </summary>
+        public static string UntitledText {
+            get {
+                return ResourceManager.GetString("UntitledText", resourceCulture);
             }
         }
     }

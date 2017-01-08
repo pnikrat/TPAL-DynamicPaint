@@ -40,11 +40,15 @@ namespace Dynamic_Paint.ViewModels
             _selectedStrokeThicknessNumeric = 5;
             _selectedColor = Color.FromRgb(0, 0, 0);
             _selectedColorBrush = new SolidColorBrush(_selectedColor);
+            WindowTitle = Properties.Resources.UntitledText;
         }
 
         private bool _english;
         private bool _polish;
         private string _currentCulture;
+
+        private string _appTitle = "Dynamic Paint";
+        private string _windowTitle;
 
         private string _statusBarText;
         private string _coordinates;
@@ -106,6 +110,16 @@ namespace Dynamic_Paint.ViewModels
             }
         }
 
+        public string WindowTitle
+        {
+            get { return _windowTitle; }
+            set
+            {
+                _windowTitle = value + " - " + _appTitle;
+                base.OnPropertyChanged("WindowTitle");
+            }
+        }
+
         public string StatusBarText
         {
             get { return _statusBarText; }
@@ -162,6 +176,7 @@ namespace Dynamic_Paint.ViewModels
             set
             {
                 _pathToLoadedFile = value;
+                WindowTitle = value;
             }
         }
 
@@ -471,6 +486,9 @@ namespace Dynamic_Paint.ViewModels
         {
             ResourceHelper helper = new ResourceHelper("Dynamic_Paint.Properties.Resources", GetType().Assembly);
             string updatedStatusBarTextKey = helper.GetResourceName(StatusBarText, CultureInfo.CreateSpecificCulture(_currentCulture));
+            string updatedUntitledTextKey = helper.GetResourceName(WindowTitle.Replace(" - Dynamic Paint", ""),
+                    CultureInfo.CreateSpecificCulture(_currentCulture));
+
 
             string ChosenCultureString = (string)chosenCulture;
             CultureInfo ChosenCultureInfo = CultureInfo.CreateSpecificCulture(ChosenCultureString);
@@ -493,7 +511,14 @@ namespace Dynamic_Paint.ViewModels
             CultureInfo.DefaultThreadCurrentUICulture = ChosenCultureInfo;
         
             StatusBarText = helper.GetResourceValue(updatedStatusBarTextKey, CultureInfo.CreateSpecificCulture(_currentCulture));
-            base.OnPropertyChanged("StatusBarText");
+            try
+            {
+                WindowTitle = helper.GetResourceValue(updatedUntitledTextKey, CultureInfo.CreateSpecificCulture(_currentCulture));
+            }
+            catch (Exception e)
+            {
+                return;
+            }
         }
     }
 }
