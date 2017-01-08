@@ -49,7 +49,8 @@
                     <MenuItem Header="{Binding Path=FileMenuSaveAsText, Source={StaticResource Resources}}" 
                               Command="SaveAs" />
                     <Separator />
-                    <MenuItem Header="{Binding Path=FileMenuExitText, Source={StaticResource Resources}}" />
+                    <MenuItem Header="{Binding Path=FileMenuExitText, Source={StaticResource Resources}}"
+                              Command="{Binding Path=ExitAppCommand}" />
                 </MenuItem>
                 <MenuItem Header="{Binding Path=LanguageMenuText, Source={StaticResource Resources}}">
                     <MenuItem Header="{Binding Path=LanguageMenuEnglishText, Source={StaticResource Resources}}" 

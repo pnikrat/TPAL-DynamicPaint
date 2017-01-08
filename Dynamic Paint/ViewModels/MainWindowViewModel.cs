@@ -94,7 +94,8 @@ namespace Dynamic_Paint.ViewModels
         private RelayCommand _saveCanvasToFileCommand;
 
         private RelayCommand _changeLanguageCommand;
-       
+
+        private RelayCommand _exitAppCommand;
 
         public bool WorkSaved
         {
@@ -539,6 +540,22 @@ namespace Dynamic_Paint.ViewModels
             {
                 return;
             }
+        }
+
+        public ICommand ExitAppCommand
+        {
+            get
+            {
+                if (_exitAppCommand == null)
+                    _exitAppCommand = new RelayCommand(param => this.ExitApp());
+                return _exitAppCommand;
+            }
+        }
+
+        public void ExitApp()
+        {
+            if (_workSaved)
+                Application.Current.MainWindow.Close();
         }
     }
 }
