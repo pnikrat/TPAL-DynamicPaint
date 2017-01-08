@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace PluginResize
@@ -25,8 +26,14 @@ namespace PluginResize
 
         public void Resize()
         {
-            hostInterface.SetCanvasHeight(1050);
-            hostInterface.SetCanvasWidth(1680);
+            MessageBoxResult result;
+            int[] size;
+            result = ResizeBoxView.ShowDialog(out size);
+            if (size != null)
+            {
+                hostInterface.SetCanvasWidth(size[0]);
+                hostInterface.SetCanvasHeight(size[1]);
+            }
         }
     }
 }
