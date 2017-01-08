@@ -43,7 +43,7 @@ namespace Dynamic_Paint
                 ofd.Filter = "Image files (*.png;*.jpeg;*.jpg;*.bmp)|*.png;*.jpeg;*.jpg;*.bmp";
             if (ofd.ShowDialog() == true)
             {
-                using (var stream = new FileStream(ofd.FileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+                using (FileStream stream = new FileStream(ofd.FileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                 {
                     var bitmapFrame = BitmapFrame.Create(stream, BitmapCreateOptions.DelayCreation, BitmapCacheOption.None);
                     var width = bitmapFrame.PixelWidth;
@@ -53,11 +53,52 @@ namespace Dynamic_Paint
                     vm.CanvasWidth = width;
                     vm.CanvasHeight = height;
                     ImageBrush loadedImage = new ImageBrush();
-                    loadedImage.ImageSource = new BitmapImage(new Uri(ofd.FileName));
+
+                    // prevents WPF bug in BitmapImage from file locking
+                    var bitmap = new BitmapImage();
+                    var tempstream = File.OpenRead(ofd.FileName);
+                    bitmap.BeginInit();
+                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmap.StreamSource = tempstream;
+                    bitmap.EndInit();
+                    loadedImage.ImageSource = bitmap;
+                    tempstream.Close();
+                    tempstream.Dispose();
+
                     vm.CanvasBackground = loadedImage;
                     vm.ClearCanvasCommand.Execute(null);
                     vm.PathToLoadedFile = ofd.FileName;
                 }
+            }
+        }
+
+        private void SaveCommandBinding_Executed(object sender, RoutedEventArgs e)
+        {
+            var vm = this.DataContext as MainWindowViewModel;
+            if (vm.PathToLoadedFile == null)
+                SaveAsCommandBinding_Executed(sender, e);
+            else
+            {
+                Visual x = (Visual)this.FindName("SceneControl");
+                vm.SaveCanvasToFileCommand.Execute(x);
+            }
+        }
+
+        private void SaveAsCommandBinding_Executed(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.DefaultExt = ".png";
+            CultureInfo lang = CultureInfo.CurrentUICulture;
+            if (lang.IetfLanguageTag == "pl-PL")
+                sfd.Filter = "Pliki obrazów (*.png;*.jpeg;*.jpg;*.bmp)|*.png;*.jpeg;*.jpg;*.bmp";
+            else
+                sfd.Filter = "Image files (*.png;*.jpeg;*.jpg;*.bmp)|*.png;*.jpeg;*.jpg;*.bmp";
+            if (sfd.ShowDialog() == true)
+            {
+                var vm = this.DataContext as MainWindowViewModel;
+                vm.PathToLoadedFile = sfd.FileName;
+                Visual x = (Visual)this.FindName("SceneControl");
+                vm.SaveCanvasToFileCommand.Execute(x);
             }
         }
     }

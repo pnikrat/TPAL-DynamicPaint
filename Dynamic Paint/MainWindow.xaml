@@ -14,9 +14,12 @@
         Title="{Binding Path=MainWindowTitle, Source={StaticResource Resources}}">
     <Window.CommandBindings>
         <CommandBinding Command="Open" Executed="OpenCommandBinding_Executed"></CommandBinding>
+        <CommandBinding Command="Save" Executed="SaveCommandBinding_Executed"></CommandBinding>
+        <CommandBinding Command="SaveAs" Executed="SaveAsCommandBinding_Executed"></CommandBinding>
     </Window.CommandBindings>
     <Window.InputBindings>
         <KeyBinding Key="O" Modifiers="Ctrl" Command="Open"></KeyBinding>
+        <KeyBinding Key="S" Modifiers="Ctrl" Command="Save"></KeyBinding>
     </Window.InputBindings>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -36,9 +39,12 @@
             <Menu>
                 <MenuItem Header="{Binding Path=FileMenuText, Source={StaticResource Resources}}">
                     <MenuItem Header="{Binding Path=FileMenuNewText, Source={StaticResource Resources}}" />
-                    <MenuItem Header="{Binding Path=FileMenuOpenText, Source={StaticResource Resources}}" Command="Open" InputGestureText="Ctrl+O" />
-                    <MenuItem Header="{Binding Path=FileMenuSaveText, Source={StaticResource Resources}}" />
-                    <MenuItem Header="{Binding Path=FileMenuSaveAsText, Source={StaticResource Resources}}" />
+                    <MenuItem Header="{Binding Path=FileMenuOpenText, Source={StaticResource Resources}}" 
+                              Command="Open" InputGestureText="Ctrl+O" />
+                    <MenuItem Header="{Binding Path=FileMenuSaveText, Source={StaticResource Resources}}" 
+                              Command="Save" InputGestureText="Ctrl+S" />
+                    <MenuItem Header="{Binding Path=FileMenuSaveAsText, Source={StaticResource Resources}}" 
+                              Command="SaveAs" />
                     <Separator />
                     <MenuItem Header="{Binding Path=FileMenuExitText, Source={StaticResource Resources}}" />
                 </MenuItem>
@@ -105,7 +111,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <ItemsControl ItemsSource="{Binding Path=SceneObjects}">
+                <ItemsControl ItemsSource="{Binding Path=SceneObjects}" Name="SceneControl">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <Canvas Grid.Column="0" Grid.Row="0" Background="{Binding Path=CanvasBackground}" Name="Scene" 

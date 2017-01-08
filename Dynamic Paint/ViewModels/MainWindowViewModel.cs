@@ -15,6 +15,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace Dynamic_Paint.ViewModels
@@ -80,6 +81,7 @@ namespace Dynamic_Paint.ViewModels
         private RelayCommand _mouseMoveCommand;
 
         private RelayCommand _clearCanvasCommand;
+        private RelayCommand _saveCanvasToFileCommand;
 
         private RelayCommand _changeLanguageCommand;
        
@@ -412,6 +414,47 @@ namespace Dynamic_Paint.ViewModels
         {
             for (int i = _sceneObjects.Count - 1; i >= 0; i--)
                 _sceneObjects.RemoveAt(i);
+        }
+
+        public ICommand SaveCanvasToFileCommand
+        {
+            get
+            {
+                if (_saveCanvasToFileCommand == null)
+                    _saveCanvasToFileCommand = new RelayCommand(param => this.SaveCanvasToFile(param));
+                return _saveCanvasToFileCommand;
+            }
+        }
+
+        public void SaveCanvasToFile(object currentCanvas)
+        {
+            Visual temp = (Visual)currentCanvas;
+
+            RenderTargetBitmap target = new RenderTargetBitmap(_canvasWidth, _canvasHeight, 96d, 96d, PixelFormats.Default);
+            target.Render(temp);
+
+            string ext = System.IO.Path.GetExtension(_pathToLoadedFile);
+            BitmapEncoder imageEncoder;
+            switch (ext) {
+                case ".png":
+                    imageEncoder = new PngBitmapEncoder();
+                    break;
+                case ".jpg":
+                    imageEncoder = new JpegBitmapEncoder();
+                    break;
+                case ".bmp":
+                    imageEncoder = new BmpBitmapEncoder();
+                    break;
+                default:
+                    imageEncoder = new JpegBitmapEncoder();
+                    break;
+            }
+            imageEncoder.Frames.Add(BitmapFrame.Create(target));
+
+            using (var fs = File.OpenWrite(_pathToLoadedFile))
+            {
+                imageEncoder.Save(fs);
+            }
         }
 
         public ICommand ChangeLanguageCommand
