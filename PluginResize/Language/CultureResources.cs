@@ -1,4 +1,4 @@
-﻿using Dynamic_Paint.Properties;
+﻿using PluginResize.Properties;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Dynamic_Paint.Language
+namespace PluginResize.Language
 {
     public class CultureResources
     {
+        //somehow find assembly resources!!
         private static readonly ObjectDataProvider ResourceProvider = Application.Current.Resources["Resources"] as ObjectDataProvider;
         
 

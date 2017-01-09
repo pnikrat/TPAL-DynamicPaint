@@ -3,10 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PluginResize"
-        Title="Resize Box"
+        Title="{Binding Path=ResizeBoxTitle, Source={StaticResource Resources}}"
         Height="120" Width="250"
         ResizeMode="NoResize" ShowInTaskbar="False"
         WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <ResourceDictionary Source="ResourceDictionary.xaml" />
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
@@ -20,12 +23,14 @@
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Please insert the size"
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Path=ResizeBoxTextMain, Source={StaticResource Resources}}"
                    HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0"/>
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="Width" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=ResizeBoxTextWidth, Source={StaticResource Resources}}" 
+                   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0"/>
         <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Name="WidthBox"
                    VerticalAlignment="Center" Margin="10,0" Focusable="True" TabIndex="0" PreviewTextInput="NumberValidation"/>
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="Height" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Path=ResizeBoxTextHeight, Source={StaticResource Resources}}"
+                   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0"/>
         <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" 
                     Focusable="True" TabIndex="1" Margin="10, 0" PreviewTextInput="NumberValidation" Name="HeightBox"/>
         <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
@@ -33,7 +38,7 @@
             <Button Click="OkButton_OnClick" HorizontalAlignment="Center" Name="OkButton"
                 Content="Ok" Width="50" Height="20" Margin="20,0" />
             <Button Click="CancelButton_OnClick" HorizontalAlignment="Center" Name="CancelButton"
-                Content="Cancel" Width="50" Height="20" Margin="20,0" />
+                Content="{Binding Path=CancelButton, Source={StaticResource Resources}}" Width="50" Height="20" Margin="20,0" />
         </StackPanel>
     </Grid>
 </Window>

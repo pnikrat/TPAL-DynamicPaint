@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:Dynamic_Paint"
              >
     <Application.Resources>
-        <ResourceDictionary Source="ResourceDictionary.xaml" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ResourceDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

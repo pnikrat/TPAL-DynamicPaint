@@ -9,5 +9,6 @@ namespace InternalShared
     public interface IPlugin
     {
         void AcceptHostInterface(IHost hostInterface);
+        void ChangeLanguagePlugin(object chosenCulture);
     }
 }

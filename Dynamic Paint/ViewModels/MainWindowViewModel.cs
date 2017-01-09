@@ -55,11 +55,15 @@ namespace Dynamic_Paint.ViewModels
                 Directory.CreateDirectory(pluginsPath);
             _pluginsCatalog = new DirectoryCatalog(pluginsPath, "Plugin*.dll");
             _pluginsContainer = new CompositionContainer(_pluginsCatalog);
+            _pluginsAreLoaded = false;
         }
 
         private IPlugin _pluginView;
         private DirectoryCatalog _pluginsCatalog;
         private CompositionContainer _pluginsContainer;
+        private bool _pluginsAreLoaded;
+        [ImportMany(typeof(ResourceDictionary))]
+        public IEnumerable<ResourceDictionary> _resourceDictionaries { get; set; }
 
         private ResourceHelper helper;
         private bool _workSaved;
@@ -556,9 +560,12 @@ namespace Dynamic_Paint.ViewModels
             }
 
             CultureResources.ChangeCulture(ChosenCultureInfo);
+            if (_pluginsAreLoaded)
+                _pluginView.ChangeLanguagePlugin(chosenCulture);
             CultureInfo.DefaultThreadCurrentCulture = ChosenCultureInfo;
             CultureInfo.DefaultThreadCurrentUICulture = ChosenCultureInfo;
-        
+
+
             StatusBarText = helper.GetResourceValue(updatedStatusBarTextKey, CultureInfo.CreateSpecificCulture(_currentCulture));
             try
             {
@@ -584,6 +591,11 @@ namespace Dynamic_Paint.ViewModels
         {
             _pluginsContainer.ComposeParts(this);
             _pluginView.AcceptHostInterface(this as IHost);
+            foreach (var resourceDictionary in _resourceDictionaries)
+            {
+                Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
+            }
+            _pluginsAreLoaded = true;
         }
 
         public ICommand ExitAppCommand

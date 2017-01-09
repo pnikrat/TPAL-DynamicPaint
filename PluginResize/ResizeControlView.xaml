@@ -9,9 +9,12 @@
     <UserControl.DataContext>
         <local:ResizeControlViewModel />
     </UserControl.DataContext>
-        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
-                        MaxHeight="25" MaxWidth="25" Command="{Binding ResizeCommand}">
-            <!-- ="{Binding Path=UndoTooltip, Source={StaticResource Resources}}" -->
+    <UserControl.Resources>
+        <ResourceDictionary Source="ResourceDictionary.xaml" />
+    </UserControl.Resources>
+    <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
+                        MaxHeight="25" MaxWidth="25" Command="{Binding ResizeCommand}" 
+                ToolTip="{Binding Path=ResizeControlTooltip, Source={StaticResource Resources}}">
         <Image Source="Icons/resize.png" />
     </Button>
 

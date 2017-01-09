@@ -1,6 +1,8 @@
 ﻿using InternalShared;
+using PluginResize.Language;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,6 +36,14 @@ namespace PluginResize
                 hostInterface.SetCanvasWidth(size[0]);
                 hostInterface.SetCanvasHeight(size[1]);
             }
+        }
+
+        public void ChangeLanguage(object chosenCulture)
+        {
+            string ChosenCultureString = (string)chosenCulture;
+            CultureInfo ChosenCultureInfo = CultureInfo.CreateSpecificCulture(ChosenCultureString);
+
+            CultureResources.ChangeCulture(ChosenCultureInfo);
         }
     }
 }
