@@ -9,9 +9,9 @@ using System.Windows;
 namespace PluginResize
 {
     [Export(typeof(ResourceDictionary))]
-    public partial class PluginResources : ResourceDictionary
+    public partial class ResourceDictionaryResize : ResourceDictionary
     {
-        public PluginResources()
+        public ResourceDictionaryResize()
         {
             InitializeComponent();
         }

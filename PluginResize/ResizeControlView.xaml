@@ -10,7 +10,7 @@
         <local:ResizeControlViewModel />
     </UserControl.DataContext>
     <UserControl.Resources>
-        <ResourceDictionary Source="ResourceDictionary.xaml" />
+        <ResourceDictionary Source="ResourceDictionaryResize.xaml" />
     </UserControl.Resources>
     <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
                         MaxHeight="25" MaxWidth="25" Command="{Binding ResizeCommand}" 
