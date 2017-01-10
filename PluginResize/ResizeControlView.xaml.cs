@@ -3,6 +3,10 @@ using PluginResize.Language;
 using System.ComponentModel.Composition;
 using System.Globalization;
 using System.Windows.Controls;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Windows;
 
 namespace PluginResize
 {
@@ -10,6 +14,7 @@ namespace PluginResize
     /// Interaction logic for ResizeControl.xaml
     /// </summary>
     [Export(typeof(IPlugin))]
+    [ExportMetadata("Name", "ResizePlugin")]
     public partial class ResizeControlView : UserControl, IPlugin
     {
         public ResizeControlView()
@@ -29,6 +34,11 @@ namespace PluginResize
         {
             var vm = this.DataContext as ResizeControlViewModel;
             vm.ChangeLanguage(chosenCulture);
+        }
+
+        public FrameworkElement GetPluginView()
+        {
+            return this as FrameworkElement;
         }
     }
 }

@@ -107,7 +107,13 @@
                         ToolTip="{Binding Path=UndoTooltip, Source={StaticResource Resources}}">
                     <Image Source="Icons/undo.ico" />
                 </Button>
-                <ContentControl Content="{Binding PluginView}" />
+                <ItemsControl ItemsSource="{Binding Path=PluginsViews}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Grid />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
             </StackPanel>
         </WrapPanel>
         

@@ -60,12 +60,18 @@ namespace Dynamic_Paint.ViewModels
             _pluginsAreLoaded = false;
         }
 
-        private IPlugin _pluginView;
+        [ImportMany(typeof(IPlugin), AllowRecomposition = true)]
+        private IEnumerable<Lazy<IPlugin, IPluginMetadata>> _plugins;
+
         private DirectoryCatalog _pluginsCatalog;
         private CompositionContainer _pluginsContainer;
         private bool _pluginsAreLoaded;
+
         [ImportMany(typeof(ResourceDictionary))]
-        public IEnumerable<ResourceDictionary> _resourceDictionaries { get; set; }
+        private IEnumerable<ResourceDictionary> _resourceDictionaries { get; set; }
+
+        private ObservableCollection<FrameworkElement> _pluginsViews = new ObservableCollection<FrameworkElement>();
+        private LinkedList<string> _loadedPluginsNames = new LinkedList<string>();
 
         private ResourceHelper helper;
         private bool _workSaved;
@@ -120,14 +126,14 @@ namespace Dynamic_Paint.ViewModels
 
         private RelayCommand _exitAppCommand;
 
-        [Import(typeof(IPlugin))]
-        public IPlugin PluginView
+
+        public ObservableCollection<FrameworkElement> PluginsViews
         {
-            get { return _pluginView; }
+            get { return _pluginsViews; }
             set
             {
-                _pluginView = value;
-                base.OnPropertyChanged("PluginView");
+                _pluginsViews = value;
+                base.OnPropertyChanged("PluginsViews");
             }
         }
 
@@ -568,7 +574,7 @@ namespace Dynamic_Paint.ViewModels
 
             CultureResources.ChangeCulture(ChosenCultureInfo);
             if (_pluginsAreLoaded)
-                _pluginView.ChangeLanguagePlugin(chosenCulture);
+                //_pluginView.ChangeLanguagePlugin(chosenCulture);
             CultureInfo.DefaultThreadCurrentCulture = ChosenCultureInfo;
             CultureInfo.DefaultThreadCurrentUICulture = ChosenCultureInfo;
 
@@ -596,8 +602,15 @@ namespace Dynamic_Paint.ViewModels
 
         public void ImportPlugins()
         {
-            _pluginsContainer.ComposeParts(this);
-            _pluginView.AcceptHostInterface(this as IHost);
+            _pluginsContainer.SatisfyImportsOnce(this);
+
+            foreach (IPlugin plug in _plugins.Select(p => p.Value))
+            {
+                //var pluginContainer = _plugins.Select(p => !_loadedPluginsNames.Contains(p.Metadata.Name));
+                plug.AcceptHostInterface(this as IHost);
+                _pluginsViews.Add(plug.GetPluginView());
+            }
+
             foreach (var resourceDictionary in _resourceDictionaries)
             {
                 Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
