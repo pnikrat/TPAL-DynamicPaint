@@ -31,7 +31,7 @@ namespace PluginResize
             MessageBoxResult result;
             int[] size;
             result = ResizeBoxView.ShowDialog(out size);
-            if (size != null)
+            if (size != null && (result == MessageBoxResult.OK))
             {
                 hostInterface.SetCanvasWidth(size[0]);
                 hostInterface.SetCanvasHeight(size[1]);

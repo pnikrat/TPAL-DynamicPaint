@@ -102,18 +102,18 @@
     <Resource Include="Icons\resize.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Properties\Resources.pl.resx">
+    <EmbeddedResource Include="Properties\Resources.pl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.pl.Designer.cs</LastGenOutput>
-    </Resource>
-    <Resource Include="Properties\Resources.en.resx">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.en.Designer.cs</LastGenOutput>
-    </Resource>
-    <Resource Include="Properties\Resources.resx">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </Resource>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PluginResize"
         Title="{Binding Path=ResizeBoxTitle, Source={StaticResource Resources}}"
-        Height="120" Width="250"
+        Height="230" Width="300"
         ResizeMode="NoResize" ShowInTaskbar="False"
         WindowStartupLocation="CenterOwner">
     <Window.Resources>
@@ -12,10 +12,10 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="0.2*" />
+            <RowDefinition Height="0.3*" />
+            <RowDefinition Height="0.3*" />
+            <RowDefinition Height="0.4*" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -36,9 +36,9 @@
         <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
                     HorizontalAlignment="Center">
             <Button Click="OkButton_OnClick" HorizontalAlignment="Center" Name="OkButton"
-                Content="Ok" Width="50" Height="20" Margin="20,0" />
+                Content="Ok" Width="60" Height="25" Margin="20,0" IsDefault="True" />
             <Button Click="CancelButton_OnClick" HorizontalAlignment="Center" Name="CancelButton"
-                Content="{Binding Path=CancelButton, Source={StaticResource Resources}}" Width="50" Height="20" Margin="20,0" />
+                Content="{Binding Path=CancelButton, Source={StaticResource Resources}}" Width="60" Height="25" Margin="20,0" IsCancel="True" />
         </StackPanel>
     </Grid>
 </Window>
