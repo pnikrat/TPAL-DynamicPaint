@@ -14,7 +14,7 @@
     </UserControl.Resources>
     <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
                         MaxHeight="25" MaxWidth="25" Command="{Binding ResizeCommand}" 
-                ToolTip="{Binding Path=ResizeControlTooltip, Source={StaticResource Resources}}">
+                ToolTip="{Binding Path=ResizeControlTooltip, Source={StaticResource ResourcesPlug}}">
         <Image Source="Icons/resize.png" />
     </Button>
 

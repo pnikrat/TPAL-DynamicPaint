@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PluginResize"
-        Title="{Binding Path=ResizeBoxTitle, Source={StaticResource Resources}}"
+        Title="{Binding Path=ResizeBoxTitle, Source={StaticResource ResourcesPlug}}"
         Height="230" Width="300"
         ResizeMode="NoResize" ShowInTaskbar="False"
         WindowStartupLocation="CenterOwner">
@@ -23,13 +23,13 @@
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Path=ResizeBoxTextMain, Source={StaticResource Resources}}"
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Path=ResizeBoxTextMain, Source={StaticResource ResourcesPlug}}"
                    HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0"/>
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=ResizeBoxTextWidth, Source={StaticResource Resources}}" 
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=ResizeBoxTextWidth, Source={StaticResource ResourcesPlug}}" 
                    HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0"/>
         <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Name="WidthBox"
                    VerticalAlignment="Center" Margin="10,0" Focusable="True" TabIndex="0" PreviewTextInput="NumberValidation"/>
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Path=ResizeBoxTextHeight, Source={StaticResource Resources}}"
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Path=ResizeBoxTextHeight, Source={StaticResource ResourcesPlug}}"
                    HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0"/>
         <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" 
                     Focusable="True" TabIndex="1" Margin="10, 0" PreviewTextInput="NumberValidation" Name="HeightBox"/>
@@ -38,7 +38,7 @@
             <Button Click="OkButton_OnClick" HorizontalAlignment="Center" Name="OkButton"
                 Content="Ok" Width="60" Height="25" Margin="20,0" IsDefault="True" />
             <Button Click="CancelButton_OnClick" HorizontalAlignment="Center" Name="CancelButton"
-                Content="{Binding Path=CancelButton, Source={StaticResource Resources}}" Width="60" Height="25" Margin="20,0" IsCancel="True" />
+                Content="{Binding Path=CancelButton, Source={StaticResource ResourcesPlug}}" Width="60" Height="25" Margin="20,0" IsCancel="True" />
         </StackPanel>
     </Grid>
 </Window>

@@ -3,5 +3,5 @@
                     x:Class="PluginResize.ResourceDictionaryResize"
                     xmlns:local="clr-namespace:PluginResize"
                     xmlns:res="clr-namespace:PluginResize.Language">
-    <ObjectDataProvider x:Key="Resources" ObjectType="{x:Type res:CultureResources}" MethodName="GetResourceInstance" />
+    <ObjectDataProvider x:Key="ResourcesPlug" ObjectType="{x:Type res:CultureResources}" MethodName="GetResourceInstance" />
 </ResourceDictionary>
