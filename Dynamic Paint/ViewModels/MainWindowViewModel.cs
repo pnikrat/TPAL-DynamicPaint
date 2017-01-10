@@ -47,7 +47,8 @@ namespace Dynamic_Paint.ViewModels
             WindowTitle = Properties.Resources.UntitledText;
 
             helper = new ResourceHelper("Dynamic_Paint.Properties.Resources", GetType().Assembly);
-            _workSaved = false;
+            _workSaved = true;
+            WorkSaved = false;
 
             string executingPath = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             string pluginsPath = System.IO.Path.Combine(executingPath, "plugins");
@@ -134,6 +135,11 @@ namespace Dynamic_Paint.ViewModels
             get { return _workSaved; }
             set
             {
+                string stripString = " - " + _appTitle;
+                if (value != _workSaved && (value))
+                    WindowTitle = _pathToLoadedFile;             
+                else if (value != _workSaved)
+                    WindowTitle = WindowTitle.Remove(WindowTitle.IndexOf(stripString), stripString.Length) + "*";
                 _workSaved = value;
             }
         }
@@ -375,7 +381,7 @@ namespace Dynamic_Paint.ViewModels
         public void Undo()
         {
             SceneObjects.RemoveAt(SceneObjects.Count - 1);
-            _workSaved = false;
+            WorkSaved = false;
         }
 
         public bool CanUndo()
@@ -403,7 +409,7 @@ namespace Dynamic_Paint.ViewModels
             IInputElement canvas = (IInputElement)parent;
             if (canvas.IsMouseOver && _isDrawingToolChosen)
             {
-                _workSaved = false;
+                WorkSaved = false;
                 _isDrawing = true;
                 Point mousePos = Mouse.GetPosition(canvas);
                 _currentlyDrawnShapeRef = null;
@@ -481,7 +487,7 @@ namespace Dynamic_Paint.ViewModels
                 _sceneObjects.RemoveAt(i);
             string untitledText = helper.GetResourceValue("UntitledText", CultureInfo.CreateSpecificCulture(_currentCulture));
             WindowTitle = untitledText;
-            _workSaved = false;
+            WorkSaved = false;
         }
 
         public ICommand SaveCanvasToFileCommand
@@ -523,7 +529,7 @@ namespace Dynamic_Paint.ViewModels
             {
                 imageEncoder.Save(fs);
             }
-            _workSaved = true;
+            WorkSaved = true;
         }
 
         public ICommand ChangeLanguageCommand
@@ -610,7 +616,7 @@ namespace Dynamic_Paint.ViewModels
 
         public void ExitApp()
         {
-            if (_workSaved)
+            if (WorkSaved)
                 Application.Current.MainWindow.Close();
         }
 
