@@ -79,6 +79,42 @@ namespace Dynamic_Paint.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string DiscardChangesNoButton {
+            get {
+                return ResourceManager.GetString("DiscardChangesNoButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have unsaved changes. Do you want to continue and discard your changes?.
+        /// </summary>
+        public static string DiscardChangesQuestion {
+            get {
+                return ResourceManager.GetString("DiscardChangesQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discard changes.
+        /// </summary>
+        public static string DiscardChangesTitle {
+            get {
+                return ResourceManager.GetString("DiscardChangesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string DiscardChangesYesButton {
+            get {
+                return ResourceManager.GetString("DiscardChangesYesButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select to start drawing ellipsis (mouse drag &amp; drop).
         /// </summary>
         public static string EllipseTooltip {

@@ -123,6 +123,18 @@
   <data name="ColorsHeader" xml:space="preserve">
     <value>Dostępne kolory</value>
   </data>
+  <data name="DiscardChangesNoButton" xml:space="preserve">
+    <value>Nie</value>
+  </data>
+  <data name="DiscardChangesQuestion" xml:space="preserve">
+    <value>Nie zapisałeś pracy. Czy chcesz kontynuować i odrzucić swoje zmiany?</value>
+  </data>
+  <data name="DiscardChangesTitle" xml:space="preserve">
+    <value>Odrzucić zmiany</value>
+  </data>
+  <data name="DiscardChangesYesButton" xml:space="preserve">
+    <value>Tak</value>
+  </data>
   <data name="EllipseTooltip" xml:space="preserve">
     <value>Zaznacz aby rozpocząć rysowanie elips (przeciągnij i upuść przy pomocy myszy)</value>
   </data>

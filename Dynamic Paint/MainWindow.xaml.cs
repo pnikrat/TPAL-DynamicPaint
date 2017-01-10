@@ -1,5 +1,6 @@
 ﻿using Dynamic_Paint.Language;
 using Dynamic_Paint.ViewModels;
+using Dynamic_Paint.Views;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -38,21 +39,27 @@ namespace Dynamic_Paint
         private void NewCommandBinding_Executed(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as MainWindowViewModel;
-            if (vm.WorkSaved)
+            if (!vm.WorkSaved)
             {
-                Brush background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
-                vm.CanvasBackground = background;
-                vm.PathToLoadedFile = "";
-                vm.ClearCanvasCommand.Execute(null);
+                MessageBoxResult result = DiscardChangesView.ShowDialog();
+                if (result == MessageBoxResult.No)
+                    return;
             }
-            else
-            {
-                /* MessageBoxResult result = MessageBox.Show("Test"); */
-            }
+            Brush background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            vm.CanvasBackground = background;
+            vm.PathToLoadedFile = "";
+            vm.ClearCanvasCommand.Execute(null);
         }
 
         private void OpenCommandBinding_Executed(object sender, RoutedEventArgs e)
         {
+            var vm = this.DataContext as MainWindowViewModel;
+            if (!vm.WorkSaved)
+            {
+                MessageBoxResult result = DiscardChangesView.ShowDialog();
+                if (result == MessageBoxResult.No)
+                    return;
+            }
             OpenFileDialog ofd = new OpenFileDialog();
             CultureInfo lang = CultureInfo.CurrentUICulture;
             if (lang.IetfLanguageTag == "pl-PL")
@@ -67,7 +74,6 @@ namespace Dynamic_Paint
                     var width = bitmapFrame.PixelWidth;
                     var height = bitmapFrame.PixelHeight;
 
-                    var vm = this.DataContext as MainWindowViewModel;
                     vm.CanvasWidth = width;
                     vm.CanvasHeight = height;
                     ImageBrush loadedImage = new ImageBrush();

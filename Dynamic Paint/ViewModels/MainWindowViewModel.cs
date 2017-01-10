@@ -2,6 +2,7 @@
 using Dynamic_Paint.Models;
 using Dynamic_Paint.Properties;
 using Dynamic_Paint.Utilities;
+using Dynamic_Paint.Views;
 using InternalShared;
 using System;
 using System.Collections.Generic;
@@ -545,7 +546,7 @@ namespace Dynamic_Paint.ViewModels
         public void ChangeLanguage(object chosenCulture)
         {
             string updatedStatusBarTextKey = helper.GetResourceName(StatusBarText, CultureInfo.CreateSpecificCulture(_currentCulture));
-            string updatedUntitledTextKey = helper.GetResourceName(WindowTitle.Replace(" - Dynamic Paint", ""),
+            string updatedUntitledTextKey = helper.GetResourceName(WindowTitle.Replace("* - Dynamic Paint", ""),
                     CultureInfo.CreateSpecificCulture(_currentCulture));
 
 
@@ -575,7 +576,7 @@ namespace Dynamic_Paint.ViewModels
             StatusBarText = helper.GetResourceValue(updatedStatusBarTextKey, CultureInfo.CreateSpecificCulture(_currentCulture));
             try
             {
-                WindowTitle = helper.GetResourceValue(updatedUntitledTextKey, CultureInfo.CreateSpecificCulture(_currentCulture));
+                WindowTitle = helper.GetResourceValue(updatedUntitledTextKey, CultureInfo.CreateSpecificCulture(_currentCulture)) + "*";
             }
             catch (Exception e)
             {
@@ -616,8 +617,13 @@ namespace Dynamic_Paint.ViewModels
 
         public void ExitApp()
         {
-            if (WorkSaved)
-                Application.Current.MainWindow.Close();
+            if (!WorkSaved)
+            {
+                MessageBoxResult result = DiscardChangesView.ShowDialog();
+                if (result == MessageBoxResult.No)
+                    return;
+            }
+            Application.Current.MainWindow.Close();
         }
 
         public void SetCanvasWidth(int width)
