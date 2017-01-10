@@ -648,5 +648,25 @@ namespace Dynamic_Paint.ViewModels
         {
             CanvasHeight = height;
         }
+
+        public int GetCanvasWidth()
+        {
+            return CanvasWidth;
+        }
+
+        public int GetCanvasHeight()
+        {
+            return CanvasHeight;
+        }
+
+        public Brush GetCanvasBackground()
+        {
+            return CanvasBackground;
+        }
+
+        public void SetCanvasBackground(Brush background)
+        {
+            CanvasBackground = background;
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace InternalShared
 {
@@ -10,5 +11,9 @@ namespace InternalShared
     {
         void SetCanvasWidth(int width);
         void SetCanvasHeight(int height);
+        int GetCanvasWidth();
+        int GetCanvasHeight();
+        Brush GetCanvasBackground();
+        void SetCanvasBackground(Brush background);
     }
 }
