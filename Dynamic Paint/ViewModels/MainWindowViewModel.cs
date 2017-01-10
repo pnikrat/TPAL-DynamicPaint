@@ -71,7 +71,7 @@ namespace Dynamic_Paint.ViewModels
         private IEnumerable<ResourceDictionary> _resourceDictionaries { get; set; }
 
         private ObservableCollection<FrameworkElement> _pluginsViews = new ObservableCollection<FrameworkElement>();
-        private LinkedList<string> _loadedPluginsNames = new LinkedList<string>();
+        private List<string> _loadedPluginsNames = new List<string>();
 
         private ResourceHelper helper;
         private bool _workSaved;
@@ -602,13 +602,23 @@ namespace Dynamic_Paint.ViewModels
 
         public void ImportPlugins()
         {
-            _pluginsContainer.SatisfyImportsOnce(this);
+            //odśwież katalog z DLL
+            _pluginsCatalog.Refresh();
+            //import
+            _pluginsContainer.ComposeParts(this);
 
-            foreach (IPlugin plug in _plugins.Select(p => p.Value))
+            var newPlugins = _plugins.Where(p => !_loadedPluginsNames.Contains(p.Metadata.Name));
+            var values = newPlugins.Select(p => p.Value);
+            var names = newPlugins.Select(p => p.Metadata.Name);
+            foreach (IPlugin plug in values)
             {
-                //var pluginContainer = _plugins.Select(p => !_loadedPluginsNames.Contains(p.Metadata.Name));
                 plug.AcceptHostInterface(this as IHost);
                 _pluginsViews.Add(plug.GetPluginView());
+                
+            }
+            foreach (string name in names)
+            {
+                _loadedPluginsNames.Add(name);
             }
 
             foreach (var resourceDictionary in _resourceDictionaries)
