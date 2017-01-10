@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternalShared", "InternalS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginResize", "PluginResize\PluginResize.csproj", "{2AC5D998-5DD3-4652-B3D3-4F4C24B32E92}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginImage", "PluginImage\PluginImage.csproj", "{CDE9A3A2-52A7-46EA-A166-84B56368506D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{2AC5D998-5DD3-4652-B3D3-4F4C24B32E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AC5D998-5DD3-4652-B3D3-4F4C24B32E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AC5D998-5DD3-4652-B3D3-4F4C24B32E92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDE9A3A2-52A7-46EA-A166-84B56368506D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDE9A3A2-52A7-46EA-A166-84B56368506D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDE9A3A2-52A7-46EA-A166-84B56368506D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDE9A3A2-52A7-46EA-A166-84B56368506D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

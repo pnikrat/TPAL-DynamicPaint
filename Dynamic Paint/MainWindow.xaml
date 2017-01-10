@@ -110,7 +110,7 @@
                 <ItemsControl ItemsSource="{Binding Path=PluginsViews}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <Grid />
+                            <StackPanel Orientation="Horizontal" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
