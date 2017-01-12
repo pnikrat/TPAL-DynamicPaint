@@ -7,6 +7,9 @@ using System.Windows.Input;
 
 namespace InternalShared
 {
+    /// <summary>
+    /// Klasa wykorzystywana we wzorcu MVVM
+    /// </summary>
     public class RelayCommand : ICommand
     {
         readonly Action<object> _execute;

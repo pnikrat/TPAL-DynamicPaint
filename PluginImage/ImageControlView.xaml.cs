@@ -1,7 +1,9 @@
 ﻿using InternalShared;
+using PluginImage.Language;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +28,8 @@ namespace PluginImage
     {
         public ImageControlView()
         {
+            CultureResources.ChangeCulture(Properties.Settings.Default.DefaultCulture);
+            CultureInfo.DefaultThreadCurrentCulture = Properties.Settings.Default.DefaultCulture;
             InitializeComponent();
         }
 

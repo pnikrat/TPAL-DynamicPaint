@@ -9,9 +9,12 @@
     <UserControl.DataContext>
         <local:ImageControlViewModel />
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <ResourceDictionary Source="ResourceDictionaryImage.xaml" />
+    </UserControl.Resources>
     <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
-                        MaxHeight="25" MaxWidth="25" Command="{Binding ImageOperationCommand}">
-           <!--     ToolTip="{Binding Path=ResizeControlTooltip, Source={StaticResource ResourcesPlug}}" -->
+                        MaxHeight="25" MaxWidth="25" Command="{Binding ImageOperationCommand}" 
+                ToolTip="{Binding Path=ImageControlTooltip, Source={StaticResource ResourcesPlugImg}}">
         <Image Source="Icons/invert.png" />
     </Button>
     

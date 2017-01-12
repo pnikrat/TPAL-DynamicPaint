@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace InternalShared
 {
+    /// <summary>
+    /// Bazowa klasa wszystkich klas typu ViewModel
+    /// </summary>
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
         protected ViewModelBase()
