@@ -18,9 +18,11 @@ namespace Dynamic_Paint
         {
             base.OnStartup(e);
 
+            //inicjalizacja widoku (View)
             MainWindow window = new MainWindow();
 
             var viewModel = new MainWindowViewModel();
+            //powiązanie widoku z jego ViewModel'em
             window.DataContext = viewModel;
             window.Show();
         }

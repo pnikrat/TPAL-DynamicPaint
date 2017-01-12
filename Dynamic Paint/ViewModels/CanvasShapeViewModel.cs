@@ -11,6 +11,9 @@ using System.Windows.Shapes;
 
 namespace Dynamic_Paint.Models
 {
+    /// <summary>
+    /// ViewModel obiektu rysowanego na Canvas
+    /// </summary>
     public class CanvasShapeViewModel : ViewModelBase
     {
         private double _top;

@@ -11,6 +11,10 @@ using System.Threading.Tasks;
 
 namespace Dynamic_Paint.Utilities
 {
+    /// <summary>
+    /// Klasa pomocnicza przeszukująca zasoby po kluczach lub wartościach
+    /// Używana dla stringów w kontrolkach zmieniających się zarówno w zależności od języka jak i stanu programu
+    /// </summary>
     public class ResourceHelper
     {
         public ResourceHelper(string resourceName, Assembly assembly)

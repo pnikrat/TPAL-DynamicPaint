@@ -25,6 +25,10 @@ using System.Windows.Shapes;
 
 namespace Dynamic_Paint.ViewModels
 {
+    /// <summary>
+    /// ViewModel okna głównego aplikacji
+    /// 
+    /// </summary>
     public class MainWindowViewModel : ViewModelBase, IHost
     {
         public MainWindowViewModel()
@@ -32,7 +36,7 @@ namespace Dynamic_Paint.ViewModels
             _english = true;
             _polish = false;
             _currentCulture = "en";
-            StatusBarText = Properties.Resources.StatusDefaultText;
+            StatusBarText = Resources.StatusDefaultText;
             Coordinates = "X: 0, Y: 0";
             _isDrawing = false;
             _canvasWidth = 1024;
@@ -45,12 +49,15 @@ namespace Dynamic_Paint.ViewModels
             _selectedStrokeThicknessNumeric = 5;
             _selectedColor = Color.FromRgb(0, 0, 0);
             _selectedColorBrush = new SolidColorBrush(_selectedColor);
-            WindowTitle = Properties.Resources.UntitledText;
+
+            WindowTitle = Resources.UntitledText;
 
             helper = new ResourceHelper("Dynamic_Paint.Properties.Resources", GetType().Assembly);
+            //zmiana workSaved z true na false, aby dodać '*' do tytułu rysunku
             _workSaved = true;
             WorkSaved = false;
 
+            //pluginy powinny znajdować się w katalogu 'plugins' oraz zawierać przedrostek 'Plugin'
             string executingPath = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             string pluginsPath = System.IO.Path.Combine(executingPath, "plugins");
             if (!Directory.Exists(pluginsPath))
@@ -60,6 +67,7 @@ namespace Dynamic_Paint.ViewModels
             _pluginsAreLoaded = false;
         }
 
+        #region Fields
         [ImportMany(typeof(IPlugin), AllowRecomposition = true)]
         private IEnumerable<Lazy<IPlugin, IPluginMetadata>> _plugins;
 
@@ -125,8 +133,9 @@ namespace Dynamic_Paint.ViewModels
         private RelayCommand _importPluginsCommand;
 
         private RelayCommand _exitAppCommand;
+        #endregion Fields
 
-
+        #region Properties
         public ObservableCollection<FrameworkElement> PluginsViews
         {
             get { return _pluginsViews; }
@@ -143,6 +152,7 @@ namespace Dynamic_Paint.ViewModels
             set
             {
                 string stripString = " - " + _appTitle;
+                //Logika odpowiadająca za '*' w tytule rysunku gdy praca nie jest zapisana
                 if (value != _workSaved && (value))
                     WindowTitle = _pathToLoadedFile;             
                 else if (value != _workSaved)
@@ -312,7 +322,9 @@ namespace Dynamic_Paint.ViewModels
                 base.OnPropertyChanged("SceneObjects");
             } 
         }
+        #endregion Properties
 
+        #region Commands and their methods
         public ICommand DrawLineCommand
         {
             get
@@ -327,7 +339,7 @@ namespace Dynamic_Paint.ViewModels
 
         public void DrawLine()
         {
-            StatusBarText = Properties.Resources.StatusDrawingLine;
+            StatusBarText = Resources.StatusDrawingLine;
             DrawingLine = _isDrawingToolChosen = true;
             DrawingRectangle = false;
             DrawingEllipse = false;
@@ -347,7 +359,7 @@ namespace Dynamic_Paint.ViewModels
 
         public void DrawRectangle()
         {
-            StatusBarText = Properties.Resources.StatusDrawingRectangle;
+            StatusBarText = Resources.StatusDrawingRectangle;
             DrawingLine = false;
             DrawingRectangle = _isDrawingToolChosen = true;
             DrawingEllipse = false;
@@ -367,7 +379,7 @@ namespace Dynamic_Paint.ViewModels
 
         public void DrawEllipse()
         {
-            StatusBarText = Properties.Resources.StatusDrawingEllipse;
+            StatusBarText = Resources.StatusDrawingEllipse;
             DrawingLine = false;
             DrawingRectangle = false;
             DrawingEllipse = _isDrawingToolChosen = true;
@@ -551,6 +563,7 @@ namespace Dynamic_Paint.ViewModels
 
         public void ChangeLanguage(object chosenCulture)
         {
+            //StatusBar oraz tytuł aplikacji to dwa stringi, którym trzeba zmienić język w "ręczny" sposób
             string updatedStatusBarTextKey = helper.GetResourceName(StatusBarText, CultureInfo.CreateSpecificCulture(_currentCulture));
             string updatedUntitledTextKey = helper.GetResourceName(WindowTitle.Replace("* - Dynamic Paint", ""),
                     CultureInfo.CreateSpecificCulture(_currentCulture));
@@ -558,7 +571,7 @@ namespace Dynamic_Paint.ViewModels
 
             string ChosenCultureString = (string)chosenCulture;
             CultureInfo ChosenCultureInfo = CultureInfo.CreateSpecificCulture(ChosenCultureString);
-
+            //flagi do checkboxów w menu
             if (ChosenCultureString == "pl")
             {
                 Polish = true;
@@ -573,7 +586,8 @@ namespace Dynamic_Paint.ViewModels
             }
 
             CultureResources.ChangeCulture(ChosenCultureInfo);
-            if (_pluginsAreLoaded)
+            //były próby dynamicznej zmiany języka pluginów - nieudane
+            //if (_pluginsAreLoaded)
                 //_pluginView.ChangeLanguagePlugin(chosenCulture);
             CultureInfo.DefaultThreadCurrentCulture = ChosenCultureInfo;
             CultureInfo.DefaultThreadCurrentUICulture = ChosenCultureInfo;
@@ -607,9 +621,11 @@ namespace Dynamic_Paint.ViewModels
             //import
             _pluginsContainer.ComposeParts(this);
 
+            //lambda sprawdzająca czy importowane pluginy już są wgrane
             var newPlugins = _plugins.Where(p => !_loadedPluginsNames.Contains(p.Metadata.Name));
             var values = newPlugins.Select(p => p.Value);
             var names = newPlugins.Select(p => p.Metadata.Name);
+            //wgraj i zarejestruj każdy nowy plugin
             foreach (IPlugin plug in values)
             {
                 plug.AcceptHostInterface(this as IHost);
@@ -621,6 +637,7 @@ namespace Dynamic_Paint.ViewModels
                 _loadedPluginsNames.Add(name);
             }
 
+            //import ResourceDictionaries ->element próby dynamicznej zmiany języka w pluginach - nieudanej
             foreach (var resourceDictionary in _resourceDictionaries)
             {
                 Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
@@ -637,6 +654,7 @@ namespace Dynamic_Paint.ViewModels
                 return _exitAppCommand;
             }
         }
+        #endregion Commands and their methods
 
         public void ExitApp()
         {
@@ -648,7 +666,7 @@ namespace Dynamic_Paint.ViewModels
             }
             Application.Current.MainWindow.Close();
         }
-
+        #region IHost interface implementation
         public void SetCanvasWidth(int width)
         {
             CanvasWidth = width;
@@ -678,5 +696,6 @@ namespace Dynamic_Paint.ViewModels
         {
             CanvasBackground = background;
         }
+        #endregion IHost interface implementation
     }
 }

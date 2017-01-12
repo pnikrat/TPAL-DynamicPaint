@@ -32,13 +32,13 @@ namespace Dynamic_Paint.Models
             double radiusY = Math.Abs(originY - y2) / 2;
             Point center;
 
-            if (x2 < originX && y2 < originY)
+            if (x2 < originX && y2 < originY) //2 cwiartka
                 center = new Point(Left - radiusX, Top - radiusY);
-            else if (x2 < originX)
+            else if (x2 < originX) //2 lub 3 cwiartka
                 center = new Point(Left - radiusX, Top + radiusY);
-            else if (y2 < originY)
+            else if (y2 < originY) // 1 lub 2 cwiartka
                 center = new Point(Left + radiusX, Top - radiusY);
-            else
+            else //4 cwiartka
                 center = new Point(Left + radiusX, Top + radiusY);
 
             ShapeData = new EllipseGeometry(center, radiusX, radiusY);

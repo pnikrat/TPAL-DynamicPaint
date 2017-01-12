@@ -25,11 +25,13 @@ namespace Dynamic_Paint
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
+    /// Dla uproszczenia obsługi komendy z menu 'File' zostały obsłużone w widoku 'View'
     /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
+            //Domyślny język - angielski
             CultureResources.ChangeCulture(Properties.Settings.Default.DefaultCulture);
             CultureInfo.DefaultThreadCurrentCulture = Properties.Settings.Default.DefaultCulture;
 
@@ -70,6 +72,7 @@ namespace Dynamic_Paint
             {
                 using (FileStream stream = new FileStream(ofd.FileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                 {
+                    //wczytywanie obrazka na tło Canvas
                     var bitmapFrame = BitmapFrame.Create(stream, BitmapCreateOptions.DelayCreation, BitmapCacheOption.None);
                     var width = bitmapFrame.PixelWidth;
                     var height = bitmapFrame.PixelHeight;
@@ -105,8 +108,6 @@ namespace Dynamic_Paint
             else
             {
                 Visual x = (Visual)this.FindName("SceneControl");
-
-                //test.RenderTransform = new RotateTransform(90, 512, 384);
                 vm.SaveCanvasToFileCommand.Execute(x);
             }
         }
