@@ -1,13 +1,5 @@
-﻿using Dynamic_Paint.ViewModels;
-using InternalShared;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using InternalShared;
 using System.Windows.Media;
-using System.Windows.Shapes;
 
 namespace Dynamic_Paint.Models
 {
