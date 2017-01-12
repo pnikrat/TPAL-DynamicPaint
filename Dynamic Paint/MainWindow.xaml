@@ -134,11 +134,9 @@
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="MouseLeftButtonDown">
                                         <i:InvokeCommandAction Command="{Binding MouseDownCommand}" CommandParameter="{Binding ElementName=Scene}" />
-                                        <!-- <light:EventToCommand Command="{Binding MouseDownCommand}" CommandParameter="{Binding ElementName=Scene}" />-->
                                     </i:EventTrigger>
                                     <i:EventTrigger EventName="MouseLeftButtonUp">
                                         <i:InvokeCommandAction Command="{Binding MouseUpCommand}" CommandParameter="{Binding ElementName=Scene}" />
-                                        <!--<light:EventToCommand Command="{Binding MouseUpCommand}" PassEventArgsToCommand="True" />-->
                                     </i:EventTrigger>
                                     <i:EventTrigger EventName="MouseMove">
                                         <i:InvokeCommandAction Command="{Binding MouseMoveCommand}" CommandParameter="{Binding ElementName=Scene}" />
@@ -147,18 +145,12 @@
                             </Canvas>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
-                    
+
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Path Data="{Binding ShapeData}" Stroke="{Binding StrokeColor}" StrokeThickness="{Binding StrokeThickness}"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
-                  <!--  <ItemsControl.ItemContainerStyle>
-                        <Style TargetType="ContentPresenter">
-                            <Setter Property="Canvas.Left" Value="{Binding Path=Left}" />
-                            <Setter Property="Canvas.Top" Value="{Binding Path=Top}" />
-                        </Style>
-                    </ItemsControl.ItemContainerStyle> -->
                 </ItemsControl>
             </Grid>
         </ScrollViewer>

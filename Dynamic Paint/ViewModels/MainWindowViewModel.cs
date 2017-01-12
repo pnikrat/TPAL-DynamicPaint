@@ -665,11 +665,23 @@ namespace Dynamic_Paint.ViewModels
         public void SetCanvasWidth(int width)
         {
             CanvasWidth = width;
+            List<CanvasShapeViewModel> copy = _sceneObjects.ToList();
+            foreach (CanvasShapeViewModel x in copy)
+            {
+                if (x.ShapeData.Bounds.Right > width)
+                    _sceneObjects.Remove(x);
+            }
         }
 
         public void SetCanvasHeight(int height)
         {
             CanvasHeight = height;
+            List<CanvasShapeViewModel> copy = _sceneObjects.ToList();
+            foreach (CanvasShapeViewModel x in copy)
+            {
+                if (x.ShapeData.Bounds.Bottom > height)
+                    _sceneObjects.Remove(x);
+            }
         }
 
         public int GetCanvasWidth()
